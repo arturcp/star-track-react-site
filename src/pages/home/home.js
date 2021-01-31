@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import api from '../../services/api';
-// import './styles.css';
+import './styles.css';
 
 export default class Home extends Component {
   state = {
@@ -14,7 +14,7 @@ export default class Home extends Component {
 
   loadCharacters = async () => {
     const response = await api.get('/api/characters');
-    this.setState({ characters: response.data.characters });
+    this.setState({ characters: response.data });
   };
 
   render() {
@@ -25,10 +25,10 @@ export default class Home extends Component {
         <ul className="container">
           {characters.map(character => (
             <li key={character.id}>
-              <img src={character.image_url} alt={character.name}/>
+              <img src={character.image_url} alt={character.name} className="avatar"/>
               <h4>{character.name}</h4>
 
-              <p>{character.biography}</p>
+              <p>{character.bio}</p>
             </li>
           ))}
         </ul>
