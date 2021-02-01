@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import api from '../../services/api';
 import './styles.css';
 
+import Card from '../../components/Card/card'
+
 export default class Home extends Component {
   state = {
     characters: [],
@@ -22,6 +24,9 @@ export default class Home extends Component {
 
     return (
       <div className="cards">
+        {characters.map(character => (
+          <Card title={character.name} subtitle="level 3" description="asdasd asd asd asd as das das das dasd asd as d" image={character.image_url} cardType="barbarian"></Card>
+        ))}
         <ul className="container">
           {characters.map(character => (
             <li key={character.id}>
