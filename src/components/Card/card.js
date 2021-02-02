@@ -1,12 +1,12 @@
 import { Component } from "react";
-import './styles.css';
+import './styles.scss';
 
 export default class Card extends Component {
   render() {
     return (
       <div className="wrapper">
         <div className={`clash-card ${this.props.cardType}`}>
-          <div className={`clash-card__image clash-card__image--${this.props.cardType}`}>
+          <div className="clash-card__image">
             <img src={this.props.image} alt={this.props.cardType} />
           </div>
           <div className={`clash-card__level clash-card__level--${this.props.cardType}`}>{this.props.subtitle}</div>

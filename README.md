@@ -73,3 +73,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ## Resources
 
 * Characters: https://codepen.io/drehimself/pen/QNXpyp
+* Slick react: https://react-slick.neostack.com/docs/get-started
+* Sass: https://create-react-app.dev/docs/adding-a-sass-stylesheet/
+
+There was an error when using sass:
+
+```
+Node Sass version 5.0.0 is incompatible with ^4.0.0.
+```
+
+To fix, that, I had to downgrade the sass version following these instructions: https://stackoverflow.com/questions/64625050/error-node-sass-version-5-0-0-is-incompatible-with-4-0-0
