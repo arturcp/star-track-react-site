@@ -5,6 +5,10 @@ import './styles.css';
 import Card from '../../components/Card/card'
 import Slider from "react-slick";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+
 export default class Home extends Component {
   state = {
     characters: [],
@@ -25,21 +29,22 @@ export default class Home extends Component {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      centerPadding: "60px",
     };
 
     return (
-      <Slider {...settings}>
-        <div className="cards">
-        {characters.map(character => (
-          <Card key={character.name} title={character.name} subtitle="level 3" description="asdasd asd asd asd as das das das dasd asd as d" image={character.image_url} cardType="barbarian"></Card>
-        ))}
+      <div className="slide-container">
+        <Slider {...settings}>
+          {characters.map(character => (
+            <Card key={character.name} title={character.name} subtitle="level 3" description="asdasd asd asd asd as das das das dasd asd as d" image={character.image_url} cardType="barbarian"></Card>
+          ))}
 
+        </Slider>
         {/*<Link to="/about">Sobre</Link>*/}
       </div>
-      </Slider>
-
     )
   }
 }
