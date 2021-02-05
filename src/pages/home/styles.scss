@@ -1,0 +1,29 @@
+/* TODO: these variables are duplicated. See how to centralize them */
+$main-color: #fff;
+$secondary-color: #F8CD1B;
+
+.avatar {
+  width: 100px;
+}
+
+.first-heading {
+  margin-top: 180px;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 140px;
+    font-size: 28px !important;
+    margin-bottom: 0;
+  }
+}
+
+.topic-heading {
+  width: 100%;
+  text-align: center;
+
+  font-size: 40px;
+  color: $main-color;
+
+  @media only screen and (min-width: 768px) {
+    line-height: 1.2;
+  }
+}
