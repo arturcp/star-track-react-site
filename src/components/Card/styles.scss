@@ -41,6 +41,10 @@ body {
   text-align: center;
   box-shadow: -1px 15px 30px -12px black;
   z-index: 9999;
+
+  @media only screen and (max-width: 768px) {
+    width: 269px;
+  }
 }
 
 .clash-card__image {

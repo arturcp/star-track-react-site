@@ -29,7 +29,7 @@ export default class Home extends Component {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 3,
+      slidesToShow: window.innerWidth < 769 ? 1 : 3,
       slidesToScroll: 1,
       swipeToSlide: true,
       centerPadding: "60px",
