@@ -1,0 +1,30 @@
+/* TODO: these variables are duplicated. See how to centralize them */
+$main-color: #fff;
+$secondary-color: #F8CD1B;
+
+#top-header {
+  position: fixed;
+  display: inline-flex;
+  top: 0;
+  padding: 35px;
+  background-color: $main-color;
+  width: 100%;
+  margin-bottom: 2px;
+  box-shadow: #000 0 1px 3px 0px;
+
+  .logo {
+    width: 100px;
+  }
+
+  .description {
+    margin-left: 80px;
+  }
+
+  h2 {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 34px;
+    color: $secondary-color;
+    text-shadow: 0 0 #000;
+  }
+}
