@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import { Link } from "react-router-dom";
 
-import CharacterCards from '../../components/CharacterCards/CharacterChards';
+import CharacterCards from '../../components/CharacterCards/CharacterCards';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
