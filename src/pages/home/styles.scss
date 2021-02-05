@@ -27,3 +27,19 @@ $secondary-color: #F8CD1B;
     line-height: 1.2;
   }
 }
+
+.site-description {
+  padding: 55px 70px;
+  color: #000;
+  font-size: 20px;
+  line-height: 1.3;
+  background-color: #fff;
+  width: 90%;
+  margin: 60px auto;
+  border-radius: 10px;
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    border-radius: 0;
+  }
+}
