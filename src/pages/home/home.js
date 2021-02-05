@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import './styles.scss';
+// import { Link } from "react-router-dom";
+
 import CharacterCards from '../../components/CharacterCards/CharacterChards';
 import Header from '../../components/Header/Header';
+
+import './styles.scss';
 
 export default class Home extends Component {
   render() {
@@ -10,7 +13,7 @@ export default class Home extends Component {
         <Header />
         <h2 className="first-heading topic-heading">Choose your character</h2>
         <CharacterCards />
-        {/*<Link to="/about">Sobre</Link>*/}
+        {/* <Link to="/about">Sobre</Link> */}
       </div>
     )
   }
