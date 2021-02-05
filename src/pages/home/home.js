@@ -39,7 +39,7 @@ export default class Home extends Component {
       <div className="slide-container">
         <Slider {...settings}>
           {characters.map(character => (
-            <Card key={character.name} title={character.name} subtitle="level 3" description="asdasd asd asd asd as das das das dasd asd as d" image={character.image_url} cardType="barbarian"></Card>
+            <Card key={character.name} title={character.name} subtitle="level 3" description={character.bio} image={character.image_url} cardType="barbarian"></Card>
           ))}
 
         </Slider>
