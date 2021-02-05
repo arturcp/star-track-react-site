@@ -32,4 +32,25 @@ $secondary-color: #F8CD1B;
     color: $secondary-color;
     text-shadow: 0 0 #000;
   }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+}
+
+.ranking-container {
+  width: 100%;
+
+  img {
+    width: 75px;
+    float: right;
+  }
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 }
