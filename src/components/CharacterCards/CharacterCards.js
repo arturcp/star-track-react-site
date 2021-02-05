@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import api from '../../services/api';
+import React, { Component } from 'react';
+import Api from '../../services/api';
 
 import Card from '../Card/Card';
 import Slider from "react-slick";
@@ -17,7 +17,7 @@ export default class CharacterCards extends Component {
   }
 
   loadCharacters = async () => {
-    const response = await api.get('/api/characters');
+    const response = await Api.get('/api/characters');
     this.setState({ characters: response.data });
   };
 

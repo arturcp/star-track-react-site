@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../images/rocket.png';
 
-import './styles.scss'
+import './styles.scss';
 
 const header = () => {
   return (
