@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Link } from "react-router-dom";
 
 import CharacterCards from '../../components/CharacterCards/CharacterCards';
 import Header from '../../components/Header/Header';
@@ -14,7 +13,6 @@ export default class Home extends Component {
         <Header />
         <h2 className="first-heading topic-heading">Choose your character</h2>
         <CharacterCards />
-        {/* <Link to="/about">Sobre</Link> */}
 
         <div className="site-description">
           <h2>WTF is Star Track?</h2>

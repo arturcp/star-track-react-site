@@ -1,0 +1,39 @@
+/* TODO: these variables are duplicated. See how to centralize them */
+$main-color: #fff;
+$secondary-color: #F8CD1B;
+
+#ranking-table {
+  margin: 0 auto;
+  font-size: 25px;
+  color: #fff;
+
+  margin-bottom: 50px;
+
+  td {
+    height: 35px;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .character {
+    padding-left: 30px;
+  }
+
+  a {
+    color: $main-color;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  a:visited {
+    text-decoration: none;
+  }
+}
