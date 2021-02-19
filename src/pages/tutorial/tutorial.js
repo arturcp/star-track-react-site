@@ -10,6 +10,10 @@ export default class Tutorial extends Component {
     character: this.props.location.state.character
   }
 
+  onDialogFinish = () => {
+    console.log('fim')
+  }
+
   render() {
     let { character } = this.state
     return (
@@ -26,6 +30,7 @@ export default class Tutorial extends Component {
           speed="40"
           eraseSpeed="0"
           typingDelay="1300"
+          dialogFinished={this.onDialogFinish}
         />
         <Footer />
       </section>
