@@ -7,7 +7,7 @@ export default class Card extends Component {
       <div className="wrapper">
         <div className={`clash-card ${this.props.cardType}`}>
           <div className="clash-card__image">
-            <img src={this.props.image} alt={this.props.cardType} />
+            <img src={this.props.image} alt={this.props.name} />
           </div>
           <div className={`clash-card__level clash-card__level--${this.props.cardType}`}>{this.props.subtitle}</div>
           <div className="clash-card__unit-name">{this.props.title}</div>

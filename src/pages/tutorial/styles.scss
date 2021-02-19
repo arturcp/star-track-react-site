@@ -1,0 +1,12 @@
+#tutorial {
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    img {
+      border: 1px solid #000;
+    }
+  }
+}

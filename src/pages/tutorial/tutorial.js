@@ -13,16 +13,21 @@ export default class Tutorial extends Component {
   render() {
     let { character } = this.state
     return (
-      <>
+      <section id="tutorial">
         <Header />
         <h2 className="first-heading topic-heading">
           {character.name}
         </h2>
+        <div className="avatar">
+          <img src={character.image_url} alt={character.name} />
+        </div>
         <DialogBox
           text={character.history}
+          speed={40}
+          eraseSpeed={0}
         />
         <Footer />
-      </>
+      </section>
     )
   }
 }
