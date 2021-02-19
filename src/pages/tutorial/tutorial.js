@@ -1,30 +1,51 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
+// import Footer from '../../components/Footer/Footer';
 import Introduction from './introduction';
+import Dialogs from '../../components/Dialogs/Dialogs';
+import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
 
 import './styles.scss';
 
 export default class Tutorial extends Component {
+  STAGES = {
+    INTRODUCTION: 'introduction',
+    CONFIRMATION: 'confirmation',
+    GAME: 'game'
+  }
+
   state = {
     character: this.props.location.state.character,
-    introduction: true
+    stage: this.STAGES.CONFIRMATION
   }
 
   onDialogFinish = () => {
-    this.setState({ introduction: false })
+    this.setState({ stage: this.STAGES.CONFIRMATION })
+  }
+
+  startGame = () => {
+    this.setState({ stage: this.STAGES.GAME })
   }
 
   tutorialStage = () => {
-    if (this.state.introduction) {
-      return <Introduction character={this.state.character} dialogFinished={this.onDialogFinish} />
+    const { stage, character } = this.state
+    console.log(stage);
+    if (stage === this.STAGES.INTRODUCTION) {
+      return <Introduction character={character} dialogFinished={this.onDialogFinish} />
+    } else if (stage === this.STAGES.CONFIRMATION) {
+      return <ConfirmationBox
+        title="It starts"
+        text={`You are about to start ${character.name}'s journey, are you ready?`}
+        buttonText="Start"
+        onClickHandler={this.startGame}
+      />
     } else {
       return this.dialogs();
     }
   }
 
   dialogs = () => {
-    return null;
+    return <Dialogs character={this.state.character} />;
   }
 
   render() {
@@ -32,7 +53,7 @@ export default class Tutorial extends Component {
       <section id="tutorial">
         <Header />
         {this.tutorialStage()}
-        <Footer />
+        {/* <Footer /> */}
       </section>
     )
   }

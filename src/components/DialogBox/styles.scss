@@ -12,7 +12,9 @@
     text-align: center;
 
     img {
-      height: 140px;
+      height: 120px;
+      width: 120px;
+      object-fit: cover;
 
       @media only screen and (min-width: 576px) {
         border-radius: 50%;
