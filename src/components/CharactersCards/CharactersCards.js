@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-export default class CharacterCards extends Component {
+export default class CharactersCards extends Component {
   state = {
     characters: [],
   }

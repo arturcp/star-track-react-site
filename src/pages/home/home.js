@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import CharacterCards from '../../components/CharacterCards/CharacterCards';
+import CharactersCards from '../../components/CharactersCards/CharactersCards';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
@@ -12,7 +12,7 @@ export default class Home extends Component {
       <div>
         <Header />
         <h2 className="first-heading topic-heading">Choose your character</h2>
-        <CharacterCards />
+        <CharactersCards />
 
         <div className="site-description">
           <h2>WTF is Star Track?</h2>
