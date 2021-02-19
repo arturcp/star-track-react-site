@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Api from '../../services/api';
 
-import Card from '../Card/Card';
+import Card from './Card/Card';
 import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
