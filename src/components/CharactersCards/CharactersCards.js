@@ -38,8 +38,13 @@ export default class CharactersCards extends Component {
       <div className="slide-container">
         <Slider {...settings}>
           {characters.map(character => (
-            <Link to={`/tutorial?id=${character.id}`}>
-              <Card key={character.name}
+            <Link key={character.name} to={{
+              pathname: '/tutorial',
+              state: {
+                character: character
+              },
+            }}>
+              <Card
                 title={character.name}
                 subtitle={character.pronouns}
                 description={character.bio}
