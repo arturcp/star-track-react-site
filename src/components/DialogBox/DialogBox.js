@@ -16,8 +16,9 @@ const DialogBox = (props) => {
         props.text.splice(0, 1)
         if (props.text.length === 0 && typeof dialogFinished === 'function') {
           dialogFinished()
+        } else {
+          setMode('typing')
         }
-        setMode('typing')
       }
     }
   }
