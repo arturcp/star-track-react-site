@@ -22,12 +22,20 @@ const DialogBox = (props) => {
   })
 
   return (
-    <div className="dialog-box">
-      {mode === 'typing' ?
-        <ReactTypingEffect { ...props } /> :
-        <div>{props.text[0]}</div>
-      }
-    </div>
+    <section className="dialog-box-container">
+      {props.avatar && (
+        <div className="dialog-avatar">
+          <img src={props.avatar} alt="avatar" />
+        </div>
+      )}
+
+      <div className="dialog-box">
+        {mode === 'typing' ?
+          <ReactTypingEffect { ...props } /> :
+          <div>{props.text[0]}</div>
+        }
+      </div>
+    </section>
   )
 }
 
