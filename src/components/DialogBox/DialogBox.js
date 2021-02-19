@@ -32,7 +32,10 @@ const DialogBox = (props) => {
       <div className="dialog-box">
         {mode === 'typing' ?
           <ReactTypingEffect { ...props } /> :
-          <div>{props.text[0]}</div>
+          <div>
+            {props.text[0]}
+            <span className="key-hint">[Press enter...]</span>
+          </div>
         }
       </div>
     </section>
