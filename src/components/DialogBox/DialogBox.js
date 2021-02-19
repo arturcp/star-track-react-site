@@ -16,6 +16,7 @@ class DialogBox extends Component {
       } else {
         this.setState({ currentIndex: this.state.currentIndex + 1 })
         if (this.state.currentIndex > this.props.text.length - 1 && typeof this.props.dialogFinished === 'function') {
+          this.setState({ currentIndex: 0 })
           this.props.dialogFinished()
         } else {
           this.setState({ mode: 'typing' })
@@ -46,7 +47,6 @@ class DialogBox extends Component {
 
   render () {
     const { dialogFinished, text, avatarDirection, ...attributes } = this.props;
-
     return (
       <section className="dialog-box-container">
         {this.renderAvatarIf(avatarDirection, 'left')}
