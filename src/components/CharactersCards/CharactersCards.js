@@ -47,7 +47,7 @@ export default class CharactersCards extends Component {
                 cardType="barbarian">
               </Card>
             </Link>
-                    ))}
+          ))}
 
         </Slider>
       </div>
