@@ -18,7 +18,7 @@ export default class CharactersCards extends Component {
   }
 
   loadCharacters = async () => {
-    const response = await Api.get('/api/characters');
+    const response = await Api.get('/api/characters?type=PC');
     this.setState({ characters: response.data });
   };
 
