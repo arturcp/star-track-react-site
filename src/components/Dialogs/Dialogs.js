@@ -32,8 +32,8 @@ class Dialogs extends Component {
     this.setState({ dialogs: response.data });
   };
 
-  onDialogFinish = () => {
-    this.setState({ currentDialogIndex: this.state.currentDialogIndex + 1 })
+  onDialogFinished = () => {
+    this.setState({ currentDialogIndex: this.state.currentDialogIndex + 1 });
   }
 
   render() {
@@ -45,6 +45,7 @@ class Dialogs extends Component {
             character={this.state.character}
             npcs={npcs}
             dialog={dialogs[this.state.currentDialogIndex]}
+            dialogFinished={this.onDialogFinished}
           />
         </div>
       )

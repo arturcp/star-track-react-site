@@ -1,51 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import ReactTypingEffect from 'react-typing-effect';
 
 import './styles.scss';
 
-const DialogBox = (props) => {
-  const [mode, setMode] = useState('typing')
+class DialogBox extends Component {
+  state = {
+    mode: 'typing',
+    currentIndex: 0
+  }
 
-  const { dialogFinished, ...attributes } = props
-
-  const onKeyPress = (e) => {
+  onKeyPress = (e) => {
     if (e.keyCode === 13 || (e.keyCode >= 37 && e.keyCode <= 40)) {
-      if (mode === 'typing') {
-        setMode('flat')
+      if (this.state.mode === 'typing') {
+        this.setState({ mode: 'flat' })
       } else {
-        props.text.splice(0, 1)
-        if (props.text.length === 0 && typeof dialogFinished === 'function') {
-          dialogFinished()
+        this.setState({ currentIndex: this.state.currentIndex + 1 })
+        if (this.state.currentIndex > this.props.text.length - 1 && typeof this.props.dialogFinished === 'function') {
+          this.props.dialogFinished()
         } else {
-          setMode('typing')
+          this.setState({ mode: 'typing' })
         }
       }
     }
   }
 
-  useEffect(() => {
-    document.addEventListener("keydown", onKeyPress, false);
-  })
+  componentDidMount() {
+    document.addEventListener("keydown", this.onKeyPress, false);
+  }
 
-  return (
-    <section className="dialog-box-container">
-      {props.avatar && (
-        <div className="dialog-avatar">
-          <img src={props.avatar} alt="avatar" />
-        </div>
-      )}
+  render () {
+    const { dialogFinished, text, ...attributes } = this.props
 
-      <div className="dialog-box">
-        {mode === 'typing' ?
-          <ReactTypingEffect { ...attributes } /> :
-          <div>
-            {props.text[0]}
-            <span className="key-hint">[Press enter...]</span>
+    return (
+      <section className="dialog-box-container">
+        {this.props.avatar && (
+          <div className="dialog-avatar">
+            <img src={this.props.avatar} alt="avatar" />
           </div>
-        }
-      </div>
-    </section>
-  )
+        )}
+
+        <div className="dialog-box">
+          {this.state.mode === 'typing' ?
+            <ReactTypingEffect text={text[this.state.currentIndex]} { ...attributes } /> :
+            <div>
+              {text[this.state.currentIndex]}
+              <span className="key-hint">[Press enter...]</span>
+            </div>
+          }
+        </div>
+      </section>
+    )
+  }
 }
 
 export default DialogBox;

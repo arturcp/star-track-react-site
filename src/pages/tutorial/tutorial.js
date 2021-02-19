@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
-// import Footer from '../../components/Footer/Footer';
 import Introduction from './introduction';
 import Dialogs from '../../components/Dialogs/Dialogs';
 import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
@@ -29,7 +28,7 @@ export default class Tutorial extends Component {
 
   tutorialStage = () => {
     const { stage, character } = this.state
-    console.log(stage);
+
     if (stage === this.STAGES.INTRODUCTION) {
       return <Introduction character={character} dialogFinished={this.onDialogFinish} />
     } else if (stage === this.STAGES.CONFIRMATION) {
@@ -53,7 +52,6 @@ export default class Tutorial extends Component {
       <section id="tutorial">
         <Header />
         {this.tutorialStage()}
-        {/* <Footer /> */}
       </section>
     )
   }
