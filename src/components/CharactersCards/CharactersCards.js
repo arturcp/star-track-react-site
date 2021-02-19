@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import Api from '../../services/api';
 
 import Card from './Card/Card';
@@ -37,14 +38,16 @@ export default class CharactersCards extends Component {
       <div className="slide-container">
         <Slider {...settings}>
           {characters.map(character => (
-            <Card key={character.name}
-              title={character.name}
-              subtitle={character.pronouns}
-              description={character.bio}
-              image={character.image_url}
-              cardType="barbarian">
-            </Card>
-          ))}
+            <Link to={`/tutorial?id=${character.id}`}>
+              <Card key={character.name}
+                title={character.name}
+                subtitle={character.pronouns}
+                description={character.bio}
+                image={character.image_url}
+                cardType="barbarian">
+              </Card>
+            </Link>
+                    ))}
 
         </Slider>
       </div>
