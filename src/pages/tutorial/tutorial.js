@@ -15,7 +15,7 @@ export default class Tutorial extends Component {
 
   state = {
     character: this.props.location.state.character,
-    stage: this.STAGES.CONFIRMATION
+    stage: this.STAGES.INTRODUCTION
   }
 
   onDialogFinish = () => {

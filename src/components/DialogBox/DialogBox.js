@@ -25,7 +25,11 @@ class DialogBox extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener("keydown", this.onKeyPress, false);
+    document.addEventListener("keydown", this.onKeyPress, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.onKeyPress, true);
   }
 
   renderAvatarIf = (avatarDirection, expectedDirection) => {
