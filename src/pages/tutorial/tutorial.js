@@ -19,8 +19,12 @@ export default class Tutorial extends Component {
     if (this.state.introduction) {
       return <Introduction character={this.state.character} dialogFinished={this.onDialogFinish} />
     } else {
-      return null;
+      return this.dialogs();
     }
+  }
+
+  dialogs = () => {
+    return null;
   }
 
   render() {

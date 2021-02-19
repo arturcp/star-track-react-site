@@ -1,5 +1,6 @@
 import React from 'react';
 import DialogBox from '../../components/DialogBox/DialogBox';
+import storytellerAvatar from '../../images/storyteller.jpg';
 
 const introduction = (props) => {
   let { character } = props
@@ -12,6 +13,7 @@ const introduction = (props) => {
         <img src={character.image_url} alt={character.name} />
       </div>
       <DialogBox
+        avatar={storytellerAvatar}
         text={character.history}
         speed="40"
         eraseSpeed="0"
