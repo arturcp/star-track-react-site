@@ -28,16 +28,24 @@ class DialogBox extends Component {
     document.addEventListener("keydown", this.onKeyPress, false);
   }
 
+  renderAvatarIf = (avatarDirection, expectedDirection) => {
+    if (this.props.avatar && avatarDirection === expectedDirection) {
+      return (
+        <div className="dialog-avatar">
+          <img src={this.props.avatar} alt="avatar" />
+        </div>
+      )
+    } else {
+      return null;
+    }
+  }
+
   render () {
-    const { dialogFinished, text, ...attributes } = this.props
+    const { dialogFinished, text, avatarDirection, ...attributes } = this.props;
 
     return (
       <section className="dialog-box-container">
-        {this.props.avatar && (
-          <div className="dialog-avatar">
-            <img src={this.props.avatar} alt="avatar" />
-          </div>
-        )}
+        {this.renderAvatarIf(avatarDirection, 'left')}
 
         <div className="dialog-box">
           {this.state.mode === 'typing' ?
@@ -48,6 +56,8 @@ class DialogBox extends Component {
             </div>
           }
         </div>
+
+        {this.renderAvatarIf(avatarDirection, 'right')}
       </section>
     )
   }

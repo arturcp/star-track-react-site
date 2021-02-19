@@ -13,6 +13,7 @@ const dialog = (props) => {
   }
 
   const speaker = getSpeaker(dialog.npc_id);
+  const avatarDirection = dialog.character_type === 'PC' ? 'left' : 'right';
 
   return (
     <DialogBox
@@ -22,6 +23,7 @@ const dialog = (props) => {
       eraseSpeed="0"
       typingDelay="1300"
       dialogFinished={dialogFinished}
+      avatarDirection={avatarDirection}
     />
   )
 }
