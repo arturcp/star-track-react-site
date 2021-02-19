@@ -23,8 +23,9 @@ export default class Tutorial extends Component {
         </div>
         <DialogBox
           text={character.history}
-          speed={40}
-          eraseSpeed={0}
+          speed="40"
+          eraseSpeed="0"
+          typingDelay="1300"
         />
         <Footer />
       </section>
