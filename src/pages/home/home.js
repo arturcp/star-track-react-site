@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import CharactersCards from '../../components/CharactersCards/CharactersCards';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import Spritesheet from 'react-responsive-spritesheet';
 
 import './styles.scss';
 
@@ -20,6 +21,17 @@ export default class Home extends Component {
           <p>In vestibulum euismod odio sit amet tincidunt. Vestibulum malesuada augue vel laoreet vulputate. Proin sagittis varius elit. Pellentesque congue eget ipsum eu euismod. Phasellus convallis non lacus non dignissim. Curabitur malesuada id neque a rutrum. Nunc elit est, vehicula id posuere at, dignissim at purus. Pellentesque mollis libero nec metus hendrerit luctus. Donec et urna elit.</p>
           <p>Vivamus auctor nisl at libero feugiat, ac gravida nisl consectetur. Donec vitae scelerisque dolor. Nullam sollicitudin nulla dolor, a elementum nisi sodales in. Morbi mollis velit mauris, tincidunt porta tellus hendrerit ultricies. Morbi mollis mattis gravida. Sed vel mollis nunc. Vivamus in erat justo. Vivamus sollicitudin est tellus, ut sodales mauris euismod ac.</p>
         </div>
+
+        {/* <Spritesheet
+          className={`my-element__class--style`}
+          image={`https://raw.githubusercontent.com/danilosetra/react-responsive-spritesheet/master/assets/images/examples/sprite-image-horizontal.png`}
+          widthFrame={420}
+          heightFrame={500}
+          steps={14}
+          fps={10}
+          autoplay={true}
+          loop={true}
+        /> */}
 
         <Footer />
       </div>
