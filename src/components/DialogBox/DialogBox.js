@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactTypingEffect from 'react-typing-effect';
+import { CSSTransition } from 'react-transition-group';
 
 import './styles.scss';
 
@@ -52,13 +53,20 @@ class DialogBox extends Component {
         {this.renderAvatarIf(avatarDirection, 'left')}
 
         <div className="dialog-box">
-          {this.state.mode === 'typing' ?
-            <ReactTypingEffect text={text[this.state.currentIndex]} { ...attributes } /> :
-            <div>
-              {text[this.state.currentIndex]}
-              <span className="key-hint">[Press enter...]</span>
-            </div>
-          }
+            {this.state.mode === 'typing' ?
+              <ReactTypingEffect text={text[this.state.currentIndex]} { ...attributes } /> :
+              <CSSTransition
+                in={true}
+                appear={true}
+                timeout={1600}
+                classNames="fade"
+              >
+                <div>
+                  {text[this.state.currentIndex]}
+                  <span className="key-hint">[Press enter...]</span>
+                </div>
+              </CSSTransition>
+            }
         </div>
 
         {this.renderAvatarIf(avatarDirection, 'right')}

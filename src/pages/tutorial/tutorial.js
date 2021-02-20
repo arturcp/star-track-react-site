@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import Introduction from './introduction';
 import Dialogs from '../../components/Dialogs/Dialogs';
 import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
+import { CSSTransition } from 'react-transition-group';
 
 import './styles.scss';
 
@@ -32,12 +33,22 @@ export default class Tutorial extends Component {
     if (stage === this.STAGES.INTRODUCTION) {
       return <Introduction character={character} dialogFinished={this.onDialogFinish} />
     } else if (stage === this.STAGES.CONFIRMATION) {
-      return <ConfirmationBox
-        title="It starts"
-        text={`You are about to start ${character.name}'s journey, are you ready?`}
-        buttonText="Start"
-        onClickHandler={this.startGame}
-      />
+      return (
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={600}
+          classNames="fade"
+        >
+          <ConfirmationBox
+            title="It starts"
+            text={`You are about to start ${character.name}'s journey, are you ready?`}
+            buttonText="Start"
+            onClickHandler={this.startGame}
+          />
+        </CSSTransition>
+      )
+
     } else {
       return this.dialogs();
     }
