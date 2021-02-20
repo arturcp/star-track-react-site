@@ -31,7 +31,7 @@ class DialogBox extends Component {
   }
 
   componentWillMount() {
-    this.setState({ dialogBoxId: this.uuidv4() })
+    this.setState({ dialogBoxId: 'box-' + this.uuidv4() })
   }
 
   componentDidMount() {

@@ -4,6 +4,7 @@ import Introduction from './introduction';
 import Dialogs from '../../components/Dialogs/Dialogs';
 import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
 import { CSSTransition } from 'react-transition-group';
+import rocket from '../../images/rocket-launch.gif';
 
 import './styles.scss';
 
@@ -11,7 +12,8 @@ export default class Tutorial extends Component {
   STAGES = {
     INTRODUCTION: 'introduction',
     CONFIRMATION: 'confirmation',
-    GAME: 'game'
+    GAME: 'game',
+    LAUNCHING: 'launching',
   }
 
   state = {
@@ -24,7 +26,7 @@ export default class Tutorial extends Component {
   }
 
   startGame = () => {
-    this.setState({ stage: this.STAGES.GAME })
+    this.setState({ stage: this.STAGES.LAUNCHING })
   }
 
   tutorialStage = () => {
@@ -48,7 +50,11 @@ export default class Tutorial extends Component {
           />
         </CSSTransition>
       )
-
+    } else if (stage === this.STAGES.LAUNCHING) {
+      setTimeout(() => {
+        this.setState({ stage: this.STAGES.GAME })
+      }, 5000);
+      return <img className="rocket-launch" src={rocket} alt="Rocket launch"/>
     } else {
       return this.dialogs();
     }

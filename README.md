@@ -77,6 +77,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 * Slick react: https://react-slick.neostack.com/docs/get-started
 * Sass: https://create-react-app.dev/docs/adding-a-sass-stylesheet/
 * Typing effect: https://www.npmjs.com/package/react-typing-effect
+* Sprite animation: https://github.com/danilosetra/react-responsive-spritesheet
 
 There was an error when using sass:
 
