@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Api from '../../services/api';
 import Dialog from './Dialog/Dialog';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import './styles.scss';
 
@@ -40,14 +41,22 @@ class Dialogs extends Component {
     const { dialogs, npcs } = this.state;
     if (dialogs.length > 0 && npcs.length > 0 && this.state.currentDialogIndex < dialogs.length) {
       return (
-        <div className="dialogs-container">
-          <Dialog
-            character={this.state.character}
-            npcs={npcs}
-            dialog={dialogs[this.state.currentDialogIndex]}
-            dialogFinished={this.onDialogFinished}
-          />
-        </div>
+        <TransitionGroup className="dialogs-container">
+          <CSSTransition
+            key={this.state.currentDialogIndex}
+            timeout={300}
+            classNames="fade"
+          >
+            <Dialog
+              character={this.state.character}
+              npcs={npcs}
+              dialog={dialogs[this.state.currentDialogIndex]}
+              dialogFinished={this.onDialogFinished}
+            />
+          </CSSTransition>
+
+
+        </TransitionGroup>
       )
     } else {
       return null;
