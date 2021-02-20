@@ -48,8 +48,9 @@ class DialogBox extends Component {
 
   render () {
     const { dialogFinished, text, avatarDirection, ...attributes } = this.props;
+    const extraClass = avatarDirection === 'left' ? '' : 'invert-on-mobile';
     return (
-      <section className="dialog-box-container">
+      <section className={`dialog-box-container ${extraClass}`}>
         {this.renderAvatarIf(avatarDirection, 'left')}
 
         <div className="dialog-box">

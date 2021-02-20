@@ -8,6 +8,13 @@
     justify-content: center;
   }
 
+  @media only screen and (max-width: 768px) {
+    &.invert-on-mobile {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+
   .dialog-avatar {
     text-align: center;
 
