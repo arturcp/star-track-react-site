@@ -10,24 +10,34 @@ class DialogBox extends Component {
     currentIndex: 0
   }
 
-  onKeyPress = (e) => {
-    if (e.keyCode === 13 || (e.keyCode >= 37 && e.keyCode <= 40)) {
-      if (this.state.mode === 'typing') {
-        this.setState({ mode: 'flat' })
+  changeBoxState = () => {
+    if (this.state.mode === 'typing') {
+      this.setState({ mode: 'flat' })
+    } else {
+      this.setState({ currentIndex: this.state.currentIndex + 1 })
+      if (this.state.currentIndex > this.props.text.length - 1 && typeof this.props.dialogFinished === 'function') {
+        this.setState({ currentIndex: 0 })
+        this.props.dialogFinished()
       } else {
-        this.setState({ currentIndex: this.state.currentIndex + 1 })
-        if (this.state.currentIndex > this.props.text.length - 1 && typeof this.props.dialogFinished === 'function') {
-          this.setState({ currentIndex: 0 })
-          this.props.dialogFinished()
-        } else {
-          this.setState({ mode: 'typing' })
-        }
+        this.setState({ mode: 'typing' })
       }
     }
   }
 
+  onKeyPress = (e) => {
+    if (e.keyCode === 13 || (e.keyCode >= 37 && e.keyCode <= 40)) {
+      this.changeBoxState()
+    }
+  }
+
+  componentWillMount() {
+    this.setState({ dialogBoxId: this.uuidv4() })
+  }
+
   componentDidMount() {
     document.addEventListener("keydown", this.onKeyPress, true);
+    document.querySelector('#' + this.state.dialogBoxId)
+      .addEventListener('touchstart', this.changeBoxState, false);
   }
 
   componentWillUnmount() {
@@ -46,11 +56,18 @@ class DialogBox extends Component {
     }
   }
 
+  uuidv4 = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
   render () {
     const { dialogFinished, text, avatarDirection, ...attributes } = this.props;
     const extraClass = avatarDirection === 'left' ? '' : 'invert-on-mobile';
     return (
-      <section className={`dialog-box-container ${extraClass}`}>
+      <section id={this.state.dialogBoxId} className={`dialog-box-container ${extraClass}`}>
         {this.renderAvatarIf(avatarDirection, 'left')}
 
         <div className="dialog-box">
