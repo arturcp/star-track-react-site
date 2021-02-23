@@ -7,15 +7,15 @@ import React, { Component } from 'react'
 import './styles.scss';
 
 import Actor from '../../components/Sprites/Actor';
-import image from '../../images/sprites/char1.png';
-
+import { spriteImages } from '../../components/Sprites/Images';
 
 export default class Home extends Component {
   render() {
     const data = { width: 32, height: 48 };
+    const images = spriteImages()
 
     return (
-      <Actor image={image} data={data} column={0} row={0}></Actor>
+      <Actor image={images.carmen} data={data} column={0} row={0}></Actor>
       // <div>
       //   <Header />
       //   <h2 className="first-heading topic-heading">Choose your character</h2>
