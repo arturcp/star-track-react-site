@@ -4,10 +4,11 @@ import useKeyPress from '../../hooks/use-key-press/useKeyPress';
 import useWalk from '../../hooks/use-walk/useWalk';
 
 import { useState } from 'react';
+import { animate } from '../../animations/animationUtils';
 
 const Player = (props) => {
-  const { image, data, animationSequence } = props;
-  const { direction, step, walk, position } = useWalk(3)
+  const { image, data, animation } = props;
+  const { direction, step, walk, position } = useWalk(3, props.initialPosition)
   const [isAnimating, setAnimationStatus] = useState(false)
 
   useKeyPress((e) => {
@@ -16,17 +17,9 @@ const Player = (props) => {
     e.preventDefault();
   });
 
-  async function animate () {
-    if (animationSequence) {
-      for (let i = 0; i < animationSequence.length; i++) {
-        await animationSequence[i](walk);
-      }
-    }
-  }
-
-  if (!isAnimating && animate && typeof animate === 'function') {
+  if (!isAnimating) {
     setAnimationStatus(true);
-    animate()
+    animate(animation, walk)
   }
 
   return (

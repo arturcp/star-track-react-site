@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const useWalk = (maxSteps) => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+const useWalk = (maxSteps, initialPosition = { x: 0, y: 0 }) => {
+  const [position, setPosition] = useState(initialPosition);
   const [direction, setDirection] = useState(2); // Right is the default direction
   const [step, setStep] = useState(0)
   const directions = {
