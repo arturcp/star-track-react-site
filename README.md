@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/51095482-3e1f-48b0-aa83-8a9193e9592e/deploy-status)](https://app.netlify.com/sites/dreamy-bell-74739f/deploys)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -70,14 +71,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-
 ## Resources
 
-* Characters: https://codepen.io/drehimself/pen/QNXpyp
-* Slick react: https://react-slick.neostack.com/docs/get-started
-* Sass: https://create-react-app.dev/docs/adding-a-sass-stylesheet/
-* Typing effect: https://www.npmjs.com/package/react-typing-effect
-* Sprite animation: https://github.com/danilosetra/react-responsive-spritesheet
+- Characters: https://codepen.io/drehimself/pen/QNXpyp
+- Slick react: https://react-slick.neostack.com/docs/get-started
+- Sass: https://create-react-app.dev/docs/adding-a-sass-stylesheet/
+- Typing effect: https://www.npmjs.com/package/react-typing-effect
+- Sprite animation: https://www.youtube.com/watch?v=DqpPgK13oEM
 
 There was an error when using sass:
 
