@@ -2,7 +2,11 @@ import { sleep } from './animationUtils';
 
 export function introductionAnimation() {
   async function moveRight(walk) {
-    for (let i = 0; i < 20; i++) {
+    let steps = 20;
+    if (window.outerWidth < 576) {
+      steps = window.outerWidth / 24;
+    }
+    for (let i = 0; i < steps; i++) {
         await sleep(60);
         walk('right')
     }

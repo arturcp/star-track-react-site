@@ -18,6 +18,7 @@ const Introduction = (props) => {
   const animation = {
     animationSequence: introductionAnimation(),
     animationSequenceEnded: () => { setAnimationStatus(false); },
+    // animationSequenceEnded: () => { },
     animationPrologueSleep: 1300,
     animationClosureSleep: 1000,
   }
