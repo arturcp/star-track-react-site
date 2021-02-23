@@ -5,7 +5,7 @@ import useWalk from '../../hooks/use-walk/useWalk';
 
 const Player = (props) => {
   const { image, data } = props;
-  const { direction, step, walk } = useWalk(3)
+  const { direction, step, walk, position } = useWalk(3)
 
   useKeyPress((e) => {
     const direction = e.key.replace('Arrow', '').toLowerCase();
@@ -19,6 +19,7 @@ const Player = (props) => {
       data={data}
       step={step}
       direction={direction}
+      position={position}
     ></Actor>
   )
 }

@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 
 class Sprite extends Component {
   render() {
-    const { data, image } = this.props;
+    const { data, image, position } = this.props;
     const { x, y, width, height } = data;
+
     return(
       <div
         style={{
-          display: 'inline-block',
+          position: 'absolute',
+          top: position.y,
+          left: position.x,
           width: `${width}px`,
           height: `${height}px`,
           backgroundImage: `url(${image})`,
