@@ -11,7 +11,7 @@ const useWalk = (maxSteps) => {
     up: 3,
   }
 
-  const stepSize = 8;
+  const stepSize = 6;
 
   const modifier = {
     down: { x: 0, y: stepSize },

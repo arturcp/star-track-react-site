@@ -8,6 +8,7 @@ import './styles.scss';
 
 import Player from '../../components/Sprites/Player';
 import { spriteImages } from '../../components/Sprites/Images';
+import { introductionAnimation } from '../../animations/introduction';
 
 export default class Home extends Component {
   render() {
@@ -15,7 +16,14 @@ export default class Home extends Component {
     const images = spriteImages()
 
     return (
-      <Player image={images.diego} data={data} column={0} row={0}></Player>
+      <Player
+        image={images.diego}
+        data={data}
+        column={0}
+        row={0}
+        animationSequence={introductionAnimation()}
+      >
+      </Player>
       // <div>
       //   <Header />
       //   <h2 className="first-heading topic-heading">Choose your character</h2>
