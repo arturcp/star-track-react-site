@@ -1,19 +1,19 @@
 export async function animate (animation, walk) {
   const {
-    animationSequence,
-    animationSequenceEnded,
-    animationClosureSleep,
-    animationPrologueSleep
+    sequence,
+    sequenceEnded,
+    closureSleep,
+    prologueSleep
   } = animation;
 
-  if (animationSequence) {
-    await sleep(animationPrologueSleep)
+  if (sequence) {
+    await sleep(prologueSleep)
 
-    for (let i = 0; i < animationSequence.length; i++) {
-      await animationSequence[i](walk);
+    for (let i = 0; i < sequence.length; i++) {
+      await sequence[i](walk);
     }
-    await sleep(animationClosureSleep)
-    animationSequenceEnded()
+    await sleep(closureSleep)
+    sequenceEnded()
   }
 }
 

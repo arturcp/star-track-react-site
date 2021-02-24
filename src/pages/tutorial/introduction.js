@@ -16,10 +16,10 @@ const Introduction = (props) => {
   const images = spriteImages();
 
   const animation = {
-    animationSequence: introductionAnimation(),
-    animationSequenceEnded: () => { setAnimationStatus(false); },
-    animationPrologueSleep: 1300,
-    animationClosureSleep: 1000,
+    sequence: introductionAnimation(),
+    sequenceEnded: () => { setAnimationStatus(false); },
+    prologueSleep: 1300,
+    closureSleep: 1000,
   }
 
   return (
