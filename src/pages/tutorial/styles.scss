@@ -17,6 +17,10 @@ $secondary-color: #F8CD1B;
 
   .rocket-launch {
     width: 100%;
+
+    @media only screen and (max-width: 576px) {
+      margin-top: 96px;
+    }
   }
 
   .animation-container {

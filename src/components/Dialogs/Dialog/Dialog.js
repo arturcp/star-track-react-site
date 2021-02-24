@@ -18,6 +18,7 @@ const dialog = (props) => {
   return (
     <DialogBox
       avatar={speaker.image_url}
+      name={speaker.name}
       text={dialog.paragraphs}
       speed="40"
       eraseSpeed="0"

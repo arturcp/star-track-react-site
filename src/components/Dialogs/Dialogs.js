@@ -54,8 +54,6 @@ class Dialogs extends Component {
               dialogFinished={this.onDialogFinished}
             />
           </CSSTransition>
-
-
         </TransitionGroup>
       )
     } else {

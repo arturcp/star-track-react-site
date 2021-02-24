@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import DialogBox from '../../components/DialogBox/DialogBox';
-import storytellerAvatar from '../../images/storyteller.jpg';
+// import storytellerAvatar from '../../images/storyteller.jpg';
 
 import Player from '../../components/Sprites/Player';
 import { spriteImages } from '../../components/Sprites/Images';
@@ -18,7 +18,6 @@ const Introduction = (props) => {
   const animation = {
     animationSequence: introductionAnimation(),
     animationSequenceEnded: () => { setAnimationStatus(false); },
-    // animationSequenceEnded: () => { },
     animationPrologueSleep: 1300,
     animationClosureSleep: 1000,
   }
@@ -29,17 +28,15 @@ const Introduction = (props) => {
         {character.name}
       </h2>
 
-      {isAnimating && (
-        <section className="animation-container">
-          <Player
-            image={images.carmen}
-            data={data}
-            animation={animation}
-            initialPosition={{ x: 0, y: 100 }}
-          >
-          </Player>
-        </section>
-      )}
+      <section className="animation-container">
+        <Player
+          image={images.carmen}
+          data={data}
+          animation={animation}
+          initialPosition={{ x: 0, y: 100 }}
+        >
+        </Player>
+      </section>
 
       {!isAnimating && (
         <CSSTransition
@@ -49,12 +46,8 @@ const Introduction = (props) => {
           classNames="fade"
         >
           <>
-            <div className="avatar">
-              <img src={character.image_url} alt={character.name} />
-            </div>
-
             <DialogBox
-              avatar={storytellerAvatar}
+              // avatar={storytellerAvatar}
               text={character.history}
               speed="40"
               eraseSpeed="0"
