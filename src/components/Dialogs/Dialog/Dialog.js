@@ -20,6 +20,7 @@ const dialog = (props) => {
       avatar={speaker.image_url}
       name={speaker.name}
       text={dialog.paragraphs}
+      labelColor={speaker.main_color}
       speed="40"
       eraseSpeed="0"
       typingDelay="1300"

@@ -48,7 +48,9 @@ class DialogBox extends Component {
     return this.props.avatar && (
       <div className={`dialog-avatar ${direction}`}>
         <img src={this.props.avatar} alt="avatar" />
-        <div className="avatar-name">{this.props.name}</div>
+        <div className="avatar-name" style={{ backgroundColor: this.props.labelColor || '#ccc' }}>
+          {this.props.name}
+        </div>
       </div>
     )
   }

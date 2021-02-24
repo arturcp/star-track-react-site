@@ -30,7 +30,7 @@ const Introduction = (props) => {
 
       <section className="animation-container">
         <Player
-          image={images.carmen}
+          image={images[character.name.toLowerCase()]}
           data={data}
           animation={animation}
           initialPosition={{ x: 0, y: 100 }}
