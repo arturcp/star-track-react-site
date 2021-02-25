@@ -44,16 +44,15 @@ class DialogBox extends Component {
     document.removeEventListener("keydown", this.onKeyPress, true);
   }
 
-  renderAvatarIf = (avatarDirection, expectedDirection) => {
-    if (this.props.avatar && avatarDirection === expectedDirection) {
-      return (
-        <div className="dialog-avatar">
-          <img src={this.props.avatar} alt="avatar" />
+  renderAvatar = (direction) => {
+    return this.props.avatar && (
+      <div className={`dialog-avatar ${direction}`}>
+        <img src={this.props.avatar} alt="avatar" />
+        <div className="avatar-name" style={{ backgroundColor: this.props.labelColor || '#ccc' }}>
+          {this.props.name}
         </div>
-      )
-    } else {
-      return null;
-    }
+      </div>
+    )
   }
 
   uuidv4 = () => {
@@ -68,7 +67,7 @@ class DialogBox extends Component {
     const extraClass = avatarDirection === 'left' ? '' : 'invert-on-mobile';
     return (
       <section id={this.state.dialogBoxId} className={`dialog-box-container ${extraClass}`}>
-        {this.renderAvatarIf(avatarDirection, 'left')}
+        {this.renderAvatar(avatarDirection)}
 
         <div className="dialog-box">
             {this.state.mode === 'typing' ?
@@ -81,13 +80,11 @@ class DialogBox extends Component {
               >
                 <div>
                   {text[this.state.currentIndex]}
-                  <span className="key-hint">[Press enter...]</span>
+                  <span className="key-hint">[Continue...]</span>
                 </div>
               </CSSTransition>
             }
         </div>
-
-        {this.renderAvatarIf(avatarDirection, 'right')}
       </section>
     )
   }

@@ -1,27 +1,64 @@
 import React from 'react';
+import { useState } from 'react';
 import DialogBox from '../../components/DialogBox/DialogBox';
-import storytellerAvatar from '../../images/storyteller.jpg';
+// import storytellerAvatar from '../../images/storyteller.jpg';
 
-const introduction = (props) => {
-  let { character } = props
+import Player from '../../components/Sprites/Player';
+import { spriteImages } from '../../components/Sprites/Images';
+import { introductionAnimation } from '../../animations/introduction';
+import { CSSTransition } from 'react-transition-group';
+
+const Introduction = (props) => {
+  const [isAnimating, setAnimationStatus] = useState(true);
+
+  const { character } = props;
+  const data = { width: 32, height: 48 };
+  const images = spriteImages();
+
+  const animation = {
+    sequence: introductionAnimation(),
+    sequenceEnded: () => { setAnimationStatus(false); },
+    prologueSleep: 1300,
+    closureSleep: 1000,
+  }
+
   return (
     <>
       <h2 className="first-heading topic-heading">
         {character.name}
       </h2>
-      <div className="avatar">
-        <img src={character.image_url} alt={character.name} />
-      </div>
-      <DialogBox
-        avatar={storytellerAvatar}
-        text={character.history}
-        speed="40"
-        eraseSpeed="0"
-        typingDelay="1300"
-        dialogFinished={props.dialogFinished}
-      />
+
+      <section className="animation-container">
+        <Player
+          image={images[character.name.toLowerCase()]}
+          data={data}
+          animation={animation}
+          initialPosition={{ x: 0, y: 100 }}
+        >
+        </Player>
+      </section>
+
+      {!isAnimating && (
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={600}
+          classNames="fade"
+        >
+          <>
+            <DialogBox
+              // avatar={storytellerAvatar}
+              text={character.history}
+              speed="40"
+              eraseSpeed="0"
+              typingDelay="1300"
+              dialogFinished={props.dialogFinished}
+            />
+          </>
+        </CSSTransition>
+      )}
     </>
   )
 }
 
-export default introduction;
+export default Introduction;
