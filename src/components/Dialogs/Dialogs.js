@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Api from '../../services/api';
 import Dialog from './Dialog/Dialog';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -60,6 +61,14 @@ class Dialogs extends Component {
       return null;
     }
   }
+}
+
+Dialogs.propTypes = {
+  // Character is an object that represents the
+  // player that is playing the game. It will be
+  // a Carmen, a Sam or a Diego necessarily, only
+  // PCs are expected.
+  character: PropTypes.object,
 }
 
 export default Dialogs;
