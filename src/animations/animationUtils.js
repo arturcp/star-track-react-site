@@ -1,19 +1,20 @@
 export async function animate (animation, walk) {
+  animation = animation || {};
   const {
     sequence,
-    sequenceEnded,
-    closureSleep,
-    prologueSleep
+    onSequenceEnded,
+    waitBeforeEnd,
+    waitBeforeStart
   } = animation;
 
   if (sequence) {
-    await sleep(prologueSleep)
+    await sleep(waitBeforeStart)
 
     for (let i = 0; i < sequence.length; i++) {
       await sequence[i](walk);
     }
-    await sleep(closureSleep)
-    sequenceEnded()
+    await sleep(waitBeforeEnd)
+    onSequenceEnded()
   }
 }
 

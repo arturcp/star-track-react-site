@@ -21,9 +21,9 @@ const dialog = (props) => {
       name={speaker.name}
       text={dialog.paragraphs}
       labelColor={speaker.main_color}
-      speed="40"
-      eraseSpeed="0"
-      typingDelay="1300"
+      speed={40}
+      eraseSpeed={0}
+      typingDelay={1300}
       dialogFinished={dialogFinished}
       avatarDirection={avatarDirection}
     />

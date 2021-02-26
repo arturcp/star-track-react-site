@@ -8,6 +8,10 @@ import rocket from '../../images/rocket-launch.gif';
 
 import './styles.scss';
 
+// This page receives the current character in
+// the `location` attribute through
+// the state property of the <Link> component that
+// redirected the user to this page.
 export default class Tutorial extends Component {
   STAGES = {
     INTRODUCTION: 'introduction',

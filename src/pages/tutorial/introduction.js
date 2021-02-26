@@ -16,9 +16,9 @@ const Introduction = (props) => {
 
   const animation = {
     sequence: introductionAnimation(),
-    sequenceEnded: () => { setAnimationStatus(false); },
-    prologueSleep: 1300,
-    closureSleep: 1000,
+    onSequenceEnded: () => setAnimationStatus(false),
+    waitBeforeStart: 1300,
+    waitBeforeEnd: 1000,
   }
 
   return (
@@ -33,6 +33,7 @@ const Introduction = (props) => {
           data={data}
           animation={animation}
           initialPosition={{ x: 0, y: 100 }}
+          allowInteraction={false}
         >
         </Player>
       </section>
@@ -47,9 +48,9 @@ const Introduction = (props) => {
           <>
             <DialogBox
               text={character.history}
-              speed="40"
-              eraseSpeed="0"
-              typingDelay="1300"
+              speed={40}
+              eraseSpeed={0}
+              typingDelay={1300}
               dialogFinished={props.dialogFinished}
             />
           </>
