@@ -33,6 +33,7 @@ const Introduction = (props) => {
           data={data}
           animation={animation}
           initialPosition={{ x: 0, y: 100 }}
+          allowInteraction={false}
         >
         </Player>
       </section>

@@ -7,14 +7,16 @@ import { useState } from 'react';
 import { animate } from '../../animations/animationUtils';
 
 const Player = (props) => {
-  const { image, data, animation } = props;
+  const { image, data, animation, allowInteraction } = props;
   const { direction, step, walk, position } = useWalk(3, props.initialPosition)
   const [isAnimating, setAnimationStatus] = useState(false)
 
   useKeyPress((e) => {
-    const direction = e.key.replace('Arrow', '').toLowerCase();
-    walk(direction)
-    e.preventDefault();
+    if (allowInteraction) {
+      const direction = e.key.replace('Arrow', '').toLowerCase();
+      walk(direction)
+      e.preventDefault();
+    }
   });
 
   if (!isAnimating) {

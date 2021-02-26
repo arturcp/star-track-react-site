@@ -1,4 +1,5 @@
 export async function animate (animation, walk) {
+  animation = animation || {};
   const {
     sequence,
     sequenceEnded,
