@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import DialogBox from '../../components/DialogBox/DialogBox';
-// import storytellerAvatar from '../../images/storyteller.jpg';
 
 import Player from '../../components/Sprites/Player';
 import { spriteImages } from '../../components/Sprites/Images';
@@ -47,7 +46,6 @@ const Introduction = (props) => {
         >
           <>
             <DialogBox
-              // avatar={storytellerAvatar}
               text={character.history}
               speed="40"
               eraseSpeed="0"
