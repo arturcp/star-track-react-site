@@ -26,9 +26,11 @@ class Card extends Component {
 Card.propTypes = {
   // The card's main title, displayed with a larger font-size.
   title: PropTypes.string,
+
   // Subtitle of the card, displayed with a smaller font and
   // above the title.
   subtitle: PropTypes.string,
+
   // Type of the card. It is used to offer a set of cards
   // that can be used out-of-the-box. For now,
   // the only available options are:
@@ -37,8 +39,10 @@ Card.propTypes = {
   //   followed by the subtitle in orange, the title and the
   //   description.
   cardType: PropTypes.string,
+
   // Descriptive text that will be displayed in the card.
   description: PropTypes.string,
+
   // Main image displayed in the card.
   image: PropTypes.string
 };
