@@ -16,9 +16,9 @@ const Introduction = (props) => {
 
   const animation = {
     sequence: introductionAnimation(),
-    sequenceEnded: () => { setAnimationStatus(false); },
-    prologueSleep: 1300,
-    closureSleep: 1000,
+    onSequenceEnded: () => setAnimationStatus(false),
+    waitBeforeStart: 1300,
+    waitBeforeEnd: 1000,
   }
 
   return (

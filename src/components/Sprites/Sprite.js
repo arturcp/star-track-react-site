@@ -44,12 +44,6 @@ Sprite.propTypes = {
   //      starts.
   position: PropTypes.object,
 
-  // Character is an object that represents the
-  // player that is playing the game. It will be
-  // a Carmen, a Sam or a Diego necessarily, only
-  // PCs are expected.
-  character: PropTypes.object,
-
   // Data contains information about the part of the
   // sprite that is displayed. The valid keys of this
   // hash are:
