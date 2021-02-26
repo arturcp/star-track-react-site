@@ -49,7 +49,7 @@ export default class CharactersCards extends Component {
                 subtitle={character.pronouns}
                 description={character.bio}
                 image={character.image_url}
-                cardType="barbarian">
+                cardType="default">
               </Card>
             </Link>
           ))}
