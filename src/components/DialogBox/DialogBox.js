@@ -8,12 +8,11 @@ import './styles.scss';
 class DialogBox extends Component {
   constructor(props) {
     super(props)
+    this.sectionRef = React.createRef();
     this.state = {
       mode: 'typing',
-      currentIndex: 0,
-      dialogBoxId: 'box-' + this.uuidv4()
+      currentIndex: 0
     }
-    this.setState({  })
   }
 
   changeBoxState = () => {
@@ -38,7 +37,8 @@ class DialogBox extends Component {
 
   componentDidMount() {
     document.addEventListener("keydown", this.onKeyPress, true);
-    document.querySelector('#' + this.state.dialogBoxId)
+    this.sectionRef
+      .current
       .addEventListener('touchstart', this.changeBoxState, false);
   }
 
@@ -57,18 +57,15 @@ class DialogBox extends Component {
     )
   }
 
-  uuidv4 = () => {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c === 'x' ? r : ((r & 0x3) | 0x8);
-      return v.toString(16);
-    });
-  }
-
   render () {
     const { dialogFinished, text, avatarDirection, labelColor, ...attributes } = this.props;
     const extraClass = avatarDirection === 'left' ? '' : 'invert-on-mobile';
     return (
-      <section id={this.state.dialogBoxId} className={`dialog-box-container ${extraClass}`}>
+      <section
+        ref={this.sectionRef}
+        id={this.state.dialogBoxId}
+        className={`dialog-box-container ${extraClass}`}
+      >
         {this.renderAvatar(avatarDirection)}
 
         <div className="dialog-box">
