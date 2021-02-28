@@ -1,4 +1,5 @@
 import React from 'react';
+import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
@@ -6,15 +7,22 @@ const confirmationBox = (props) => {
   const { title, text, buttonText, onClickHandler } = props;
 
   return (
-    <div className="confirmation-box">
-      <h2>{title}</h2>
+    <CSSTransition
+      in={true}
+      appear={true}
+      timeout={600}
+      classNames="fade"
+    >
+      <div className="confirmation-box">
+        <h2>{title}</h2>
 
-      <p>{text}</p>
+        <p>{text}</p>
 
-      <button className="call-to-action" onClick={onClickHandler}>
-        {buttonText}
-      </button>
-    </div>
+        <button className="call-to-action" onClick={onClickHandler}>
+          {buttonText}
+        </button>
+      </div>
+    </CSSTransition>
   )
 }
 
