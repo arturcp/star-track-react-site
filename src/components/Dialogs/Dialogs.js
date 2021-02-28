@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Api from '../../services/api';
 import Dialog from './Dialog/Dialog';
+import styled from 'styled-components';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import './styles.scss';
+// import './styles.scss';
 
 class Dialogs extends Component {
   state = {
@@ -40,9 +41,14 @@ class Dialogs extends Component {
 
   render() {
     const { dialogs, npcs } = this.state;
+
+    const Container = styled(TransitionGroup)`
+      margin-top: 220px;
+    `;
+
     if (dialogs.length > 0 && npcs.length > 0 && this.state.currentDialogIndex < dialogs.length) {
       return (
-        <TransitionGroup className="dialogs-container">
+        <Container>
           <CSSTransition
             key={this.state.currentDialogIndex}
             timeout={300}
@@ -55,7 +61,7 @@ class Dialogs extends Component {
               dialogFinished={this.onDialogFinished}
             />
           </CSSTransition>
-        </TransitionGroup>
+        </Container>
       )
     } else {
       return null;
