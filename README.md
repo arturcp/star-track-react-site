@@ -79,7 +79,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Typing effect: https://www.npmjs.com/package/react-typing-effect
 - Sprite animation: https://www.youtube.com/watch?v=DqpPgK13oEM
 - UUid generation: https://www.npmjs.com/package/react-uuid
-- Recomponse e hoistStatics: https://github.com/acdlite/recompose/blob/master/docs/API.md#hoiststatics
+- Linters: https://dev.to/botreetechnologies/setting-up-husky-pre-commit-hook-with-eslint-prettier-and-lint-staged-for-react-and-react-native-d05 e [https://dev.to/maiertech/husky-v5-pitfalls-2pf6](https://dev.to/maiertech/husky-v5-pitfalls-2pf6)
 
 There was an error when using sass:
 

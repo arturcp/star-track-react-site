@@ -9,8 +9,13 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "cypress": "^6.4.0",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "husky": "^5.1.3",
     "jquery": "^3.5.1",
+    "lint-staged": "^10.5.4",
     "node-sass": "4.14.1",
+    "prettier": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -31,7 +36,14 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cypress": "cypress open",
-    "cypress:all": "cypress run"
+    "cypress:all": "cypress run",
+    "postinstall": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint src/**/*.js --fix-dry-run"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +64,7 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "react-test-renderer": "^17.0.1"
   }
 }
