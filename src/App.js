@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import Routes from './routes.js'
+import Routes from './routes';
 import GameContext from './context/game-context';
-import Game from './domains/game.js';
+import Game from './domains/game';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     const game = new Game({}, this.updateGame);
-    this.state = {
-      game: game
-    }
+    this.state = { game };
   }
 
   updateGame = (game) => {
-    this.setState({ game: game })
-  }
+    this.setState({ game });
+  };
 
   render() {
+    const { game } = this.state;
     return (
-      <GameContext.Provider value={this.state.game}>
+      <GameContext.Provider value={game}>
         <div className="App">
           <Routes />
         </div>

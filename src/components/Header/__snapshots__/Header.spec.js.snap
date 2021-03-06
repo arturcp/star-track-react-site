@@ -26,9 +26,9 @@ exports[`Header UI should match the snapshot 1`] = `
       </h2>
       <br />
     </a>
-    <label>
+    <span>
       Use your knowledge to help Dr. Ken
-    </label>
+    </span>
   </div>
   <div
     className="ranking-container"
