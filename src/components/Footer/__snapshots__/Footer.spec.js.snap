@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer UI should match the snapshot 1`] = `
+<footer
+  id="site-footer"
+>
+  <div
+    className="description"
+  >
+    <label>
+      All rights reserved. © Star Track Corp, 2021. 
+    </label>
+  </div>
+</footer>
+`;
