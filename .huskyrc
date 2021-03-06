@@ -1,0 +1,6 @@
+// .huskyrc
+{
+  "hooks": {
+    "pre-commit": "yarn test"
+  }
+}
