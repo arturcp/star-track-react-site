@@ -1,3 +1,6 @@
+/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable arrow-body-style */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { Component } from 'react';
 import GameContext from '../context/game-context';
 
@@ -20,16 +23,13 @@ const withGame = (WrappedComponent) => {
     render() {
       return (
         <GameContext.Consumer>
-          {context => {
-            return (
-              <WrappedComponent game={context}  {...this.props } />
-            )}
-          }
+          {(context) => {
+            return <WrappedComponent game={context} {...this.props} />;
+          }}
         </GameContext.Consumer>
-      )
+      );
     }
-  }
-}
+  };
+};
 
 export default withGame;
-

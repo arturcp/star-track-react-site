@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 // A state machine is a behavior model. It consists of a
 // finite number of states and is therefore also called
 // finite-state machine (FSM).
@@ -57,61 +59,68 @@ class StateMachine {
 
   current = () => ({
     value: this.currentState,
-    ...this.data.states[this.currentState]
-  })
+    ...this.data.states[this.currentState],
+  });
 
   next = () => {
-    this.currentState = this.current().next
-    return this.current()
-  }
+    this.currentState = this.current().next;
+    return this.current();
+  };
 
   component = () => {
-    const current = this.current()
-    if (current && current.component && typeof current.component === 'function') {
-      return current.component(this.data.mainComponent)
-    } else {
-      return null;
+    const current = this.current();
+    if (
+      current &&
+      current.component &&
+      typeof current.component === 'function'
+    ) {
+      return current.component(this.data.mainComponent);
     }
-  }
+
+    return null;
+  };
 }
 
-export const createStateMachine = (Component, states) => {
+const createStateMachine = (Component, states) => {
   const data = {
     mainComponent: Component,
     initial: states[0],
-    states: {}
-  }
+    states: {},
+  };
 
   const capitalize = (s) => {
     if (typeof s !== 'string') {
-      return ''
+      return '';
     }
-    return s.charAt(0).toUpperCase() + s.slice(1)
-  }
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  };
 
-  for (let i = 0; i < states.length - 1; i++) {
-    let currentState = states[i],
-        nextState = states[i+1];
+  for (let i = 0; i < states.length - 1; i += 1) {
+    const currentState = states[i];
+    const nextState = states[i + 1];
 
     data.states[currentState] = {
       next: nextState,
-      component: Component[`on${capitalize(currentState)}`]
-    }
+      component: Component[`on${capitalize(currentState)}`],
+    };
   }
 
   const lastState = states[states.length - 1];
-  data.states[lastState] = { next: '', component: Component[`on${capitalize(lastState)}`] }
+  data.states[lastState] = {
+    next: '',
+    component: Component[`on${capitalize(lastState)}`],
+  };
 
   const stateMachine = new StateMachine(data);
 
   Component.nextStage = () => {
-    Component.setState({ currentStage: stateMachine.next().value })
-  }
+    Component.setState({ currentStage: stateMachine.next().value });
+  };
 
-  Component.componentForCurrentStage = () => (
-    stateMachine.component()
-  )
+  Component.componentForCurrentStage = () => stateMachine.component();
 
   Component.stateMachine = stateMachine;
-  Component.setState({ currentStage: states[0] })
+  Component.setState({ currentStage: states[0] });
 };
+
+export default createStateMachine;

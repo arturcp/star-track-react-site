@@ -6,7 +6,7 @@ import Dialogs from '../../components/Dialogs/Dialogs';
 import withGame from '../../hoc/with-game';
 import Api from '../../services/api';
 
-import { createStateMachine } from '../../libs/StateMachine';
+import createStateMachine from '../../libs/StateMachine';
 
 import rocket from '../../images/rocket-launch.gif';
 import './styles.scss';
@@ -16,11 +16,17 @@ import './styles.scss';
 // that redirected the user to this page.
 class Tutorial extends Component {
   constructor(props) {
-    super(props)
-    this.character = this.props.location.state.character;
+    super(props);
+    const { location } = this.props;
+    const { character } = location.state;
+    this.character = character;
 
-    createStateMachine(this,
-      ['introduction', 'confirmation', 'launching', 'dialogs']);
+    createStateMachine(this, [
+      'introduction',
+      'confirmation',
+      'launching',
+      'dialogs',
+    ]);
   }
 
   componentDidMount() {
@@ -30,20 +36,17 @@ class Tutorial extends Component {
   startGame = async () => {
     const levels = await Api.get('/api/levels');
     const npcs = await Api.get('/api/characters?type=NPC');
-    this.props.game.start(this.props.location.state.character, levels.data, npcs.data);
-  }
+    const { location, game } = this.props;
 
-  onIntroduction = () => {
-    return (
-      <Introduction
-        character={this.character}
-        dialogFinished={this.nextStage}
-      />
-    )
-  }
+    game.start(location.state.character, levels.data, npcs.data);
+  };
+
+  onIntroduction = () => (
+    <Introduction character={this.character} dialogFinished={this.nextStage} />
+  );
 
   onConfirmation = () => {
-    const text = `You are about to start ${this.character.name}'s journey, are you ready?`
+    const text = `You are about to start ${this.character.name}'s journey, are you ready?`;
 
     return (
       <ConfirmationBox
@@ -52,30 +55,21 @@ class Tutorial extends Component {
         buttonText="Start"
         onClickHandler={this.nextStage}
       />
-    )
-  }
+    );
+  };
 
   onLaunching = () => {
+    const { currentStage } = this.state;
     setTimeout(() => {
-      if (this.state.currentStage === 'launching') {
-        this.nextStage()
+      if (currentStage === 'launching') {
+        this.nextStage();
       }
     }, 5000);
 
-    return (
-      <img
-        className="rocket-launch"
-        src={rocket}
-        alt="Rocket launch"
-      />
-    )
-  }
+    return <img className="rocket-launch" src={rocket} alt="Rocket launch" />;
+  };
 
-  onDialogs = () => {
-    return (
-      <Dialogs />
-    );
-  }
+  onDialogs = () => <Dialogs />;
 
   render() {
     return (
@@ -83,7 +77,7 @@ class Tutorial extends Component {
         <Header />
         {this.componentForCurrentStage()}
       </section>
-    )
+    );
   }
 }
 

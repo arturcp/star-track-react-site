@@ -2,10 +2,10 @@
 // Leave these tests minimalists.
 describe('Character cards', () => {
   beforeEach(() => {
-    cy.visit('/')
-  })
+    cy.visit('/');
+  });
 
   it('shows three cards in the page', () => {
-    cy.get('.clash-card').should('have.length', 3)
-  })
-})
+    cy.get('.clash-card').should('have.length', 3);
+  });
+});

@@ -4,11 +4,7 @@ import GameContext from './context/game-context';
 import Game from './domains/game';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    const game = new Game({}, this.updateGame);
-    this.state = { game };
-  }
+  state = { game: new Game({}, this.updateGame) };
 
   updateGame = (game) => {
     this.setState({ game });

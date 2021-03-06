@@ -8,9 +8,9 @@ describe('Header UI', () => {
     const component = renderer.create(
       <Router>
         <Header />
-      </Router>
+      </Router>,
     );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
-  })
+  });
 });

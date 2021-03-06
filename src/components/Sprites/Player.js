@@ -1,28 +1,31 @@
-import React from 'react';
-import Actor from './Actor';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
+import Actor from './Actor';
 import useKeyPress from '../../hooks/use-key-press/useKeyPress';
 import useWalk from '../../hooks/use-walk/useWalk';
-
-import { useState } from 'react';
 import { animate } from '../../animations/animationUtils';
 
 const Player = (props) => {
   const { image, data, animation, allowInteraction } = props;
-  const { direction, step, walk, position } = useWalk(3, props.initialPosition)
-  const [isAnimating, setAnimationStatus] = useState(false)
+
+  const { initialPosition } = props;
+
+  const { direction, step, walk, position } = useWalk(3, initialPosition);
+
+  const [isAnimating, setAnimationStatus] = useState(false);
 
   useKeyPress((e) => {
     if (allowInteraction) {
-      const direction = e.key.replace('Arrow', '').toLowerCase();
-      walk(direction)
+      const chosenDirection = e.key.replace('Arrow', '').toLowerCase();
+      walk(chosenDirection);
       e.preventDefault();
     }
   });
 
   if (!isAnimating) {
     setAnimationStatus(true);
-    animate(animation, walk)
+    animate(animation, walk);
   }
 
   return (
@@ -32,9 +35,9 @@ const Player = (props) => {
       step={step}
       direction={direction}
       position={position}
-    ></Actor>
-  )
-}
+    />
+  );
+};
 
 Player.propTypes = {
   // Image is and object that represents a sprite.
@@ -95,6 +98,6 @@ Player.propTypes = {
   //
   // The valid keys for this hash are x and y.
   initialPosition: PropTypes.object,
-}
+};
 
 export default Player;

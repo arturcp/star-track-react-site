@@ -6,82 +6,93 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 class DialogBox extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      mode: 'typing',
-      currentIndex: 0
-    }
-  }
-
-  changeBoxState = () => {
-    if (this.state.mode === 'typing') {
-      this.setState({ mode: 'flat' })
-    } else {
-      this.setState({ currentIndex: this.state.currentIndex + 1 })
-      if (this.state.currentIndex > this.props.text.length - 1 && typeof this.props.dialogFinished === 'function') {
-        this.setState({ currentIndex: 0 })
-        this.props.dialogFinished()
-      } else {
-        this.setState({ mode: 'typing' })
-      }
-    }
-  }
-
-  onKeyPress = (e) => {
-    if (e.keyCode === 13 || (e.keyCode >= 37 && e.keyCode <= 40)) {
-      this.changeBoxState()
-    }
-  }
+  state = {
+    mode: 'typing',
+    currentIndex: 0,
+  };
 
   componentDidMount() {
-    document.addEventListener("keydown", this.onKeyPress, true);
+    document.addEventListener('keydown', this.onKeyPress, true);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.onKeyPress, true);
+    document.removeEventListener('keydown', this.onKeyPress, true);
   }
+
+  changeBoxState = () => {
+    const { mode, currentIndex } = this.state;
+    const { text, dialogFinished } = this.props;
+
+    if (mode === 'typing') {
+      this.setState({ mode: 'flat' });
+    } else {
+      this.setState({ currentIndex: currentIndex + 1 });
+      if (
+        currentIndex > text.length - 1 &&
+        typeof dialogFinished === 'function'
+      ) {
+        this.setState({ currentIndex: 0 });
+        dialogFinished();
+      } else {
+        this.setState({ mode: 'typing' });
+      }
+    }
+  };
+
+  onKeyPress = (e) => {
+    if (e.keyCode === 13 || (e.keyCode >= 37 && e.keyCode <= 40)) {
+      this.changeBoxState();
+    }
+  };
 
   renderAvatar = (direction) => {
-    return this.props.avatar && (
-      <div className={`dialog-avatar ${direction}`}>
-        <img src={this.props.avatar} alt="avatar" />
-        <div className="avatar-name" style={{ backgroundColor: this.props.labelColor || '#ccc' }}>
-          {this.props.name}
+    const { avatar, labelColor, name } = this.props;
+    return (
+      avatar && (
+        <div className={`dialog-avatar ${direction}`}>
+          <img src={avatar} alt="avatar" />
+          <div
+            className="avatar-name"
+            style={{ backgroundColor: labelColor || '#ccc' }}>
+            {name}
+          </div>
         </div>
-      </div>
-    )
-  }
+      )
+    );
+  };
 
-  render () {
-    const { dialogFinished, text, avatarDirection, labelColor, ...attributes } = this.props;
+  render() {
+    const {
+      dialogFinished,
+      text,
+      avatarDirection,
+      labelColor,
+      ...attributes
+    } = this.props;
     const extraClass = avatarDirection === 'left' ? '' : 'invert-on-mobile';
+    const { dialogBoxId, mode, currentIndex } = this.state;
+
     return (
       <section
-        id={this.state.dialogBoxId}
+        id={dialogBoxId}
         className={`dialog-box-container ${extraClass}`}
-        onTouchStart={this.changeBoxState}
-      >
+        onTouchStart={this.changeBoxState}>
         {this.renderAvatar(avatarDirection)}
 
         <div className="dialog-box">
-            {this.state.mode === 'typing' ?
-              <ReactTypingEffect text={text[this.state.currentIndex]} { ...attributes } /> :
-              <CSSTransition
-                in={true}
-                appear={true}
-                timeout={1600}
-                classNames="fade"
-              >
-                <div>
-                  {text[this.state.currentIndex]}
-                  <span className="key-hint">[Continue...]</span>
-                </div>
-              </CSSTransition>
-            }
+          {mode === 'typing' ? (
+            <ReactTypingEffect text={text[currentIndex]} {...attributes} />
+          ) : (
+            <CSSTransition in appear timeout={1600} classNames="fade">
+              <div>
+                {text[currentIndex]}
+                <span className="key-hint">[Continue...]</span>
+              </div>
+            </CSSTransition>
+          )}
         </div>
       </section>
-    )
+    );
   }
 }
 
@@ -148,7 +159,7 @@ DialogBox.propTypes = {
   //
   // When avatar is not set, this attribute does not change
   // the component.
-  avatarDirection: PropTypes.string
-}
+  avatarDirection: PropTypes.string,
+};
 
 export default DialogBox;

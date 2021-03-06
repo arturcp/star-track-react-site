@@ -4,8 +4,8 @@ export default class Game {
   STATUS = {
     initial: 'initial',
     started: 'started',
-    finished: 'finished'
-  }
+    finished: 'finished',
+  };
 
   constructor(gameContext, onSave) {
     this.onSave = onSave;
@@ -19,27 +19,28 @@ export default class Game {
       currentStageId: 1,
       currentDialogId: 1,
       points: 0,
-      status: this.STATUS.initial
-    }
+      status: this.STATUS.initial,
+    };
 
-    const data = Object.assign({}, defaultData, gameContext)
+    const data = Object.assign(defaultData, gameContext);
 
     // Each key of the hash becomes an attribute of the
     // Game class.
+    // eslint-disable-next-line no-restricted-syntax
     for (const [key, value] of Object.entries(data)) {
       this[key] = value;
     }
   }
 
   save = () => {
-    this.onSave(this)
-  }
+    this.onSave(this);
+  };
 
   start = (character, levels, npcs) => {
-    this.character = character
+    this.character = character;
     this.levels = levels;
     this.npcs = npcs;
     this.status = this.STATUS.started;
-    this.save()
+    this.save();
   };
 }

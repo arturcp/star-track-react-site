@@ -2,15 +2,15 @@ import React from 'react';
 import DialogBox from '../../DialogBox/DialogBox';
 
 const dialog = (props) => {
-  const { character, npcs, dialog, dialogFinished } = props
+  const { character, npcs, dialog: currentDialog, dialogFinished } = props;
 
-  const getSpeaker = (npc_id) => {
-    if (dialog.character_type === 'PC') {
+  const getSpeaker = (npcId) => {
+    if (currentDialog.character_type === 'PC') {
       return character;
-    } else {
-      return npcs.find(npc => npc.id === npc_id);
     }
-  }
+
+    return npcs.find((npc) => npc.id === npcId);
+  };
 
   const speaker = getSpeaker(dialog.npc_id);
   const avatarDirection = dialog.character_type === 'PC' ? 'left' : 'right';
@@ -27,7 +27,7 @@ const dialog = (props) => {
       dialogFinished={dialogFinished}
       avatarDirection={avatarDirection}
     />
-  )
-}
+  );
+};
 
 export default dialog;

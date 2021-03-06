@@ -5,6 +5,6 @@ const useKeyPress = (fn) => {
     window.addEventListener('keydown', fn);
     return () => window.removeEventListener('keydown', fn);
   }, [fn]);
-}
+};
 
 export default useKeyPress;

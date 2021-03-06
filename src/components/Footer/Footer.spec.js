@@ -8,9 +8,9 @@ describe('Footer UI', () => {
     const component = renderer.create(
       <Router>
         <Footer />
-      </Router>
+      </Router>,
     );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
-  })
+  });
 });
