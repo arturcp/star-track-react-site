@@ -8,7 +8,6 @@ import './styles.scss';
 class DialogBox extends Component {
   constructor(props) {
     super(props)
-    this.sectionRef = React.createRef();
     this.state = {
       mode: 'typing',
       currentIndex: 0
@@ -37,9 +36,6 @@ class DialogBox extends Component {
 
   componentDidMount() {
     document.addEventListener("keydown", this.onKeyPress, true);
-    this.sectionRef
-      .current
-      .addEventListener('touchstart', this.changeBoxState, false);
   }
 
   componentWillUnmount() {
@@ -62,9 +58,9 @@ class DialogBox extends Component {
     const extraClass = avatarDirection === 'left' ? '' : 'invert-on-mobile';
     return (
       <section
-        ref={this.sectionRef}
         id={this.state.dialogBoxId}
         className={`dialog-box-container ${extraClass}`}
+        onTouchStart={this.changeBoxState}
       >
         {this.renderAvatar(avatarDirection)}
 
