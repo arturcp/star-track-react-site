@@ -78,6 +78,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Sass: https://create-react-app.dev/docs/adding-a-sass-stylesheet/
 - Typing effect: https://www.npmjs.com/package/react-typing-effect
 - Sprite animation: https://www.youtube.com/watch?v=DqpPgK13oEM
+- UUid generation: https://www.npmjs.com/package/react-uuid
+- Recomponse e hoistStatics: https://github.com/acdlite/recompose/blob/master/docs/API.md#hoiststatics
 
 There was an error when using sass:
 

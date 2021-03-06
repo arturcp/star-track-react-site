@@ -3,37 +3,47 @@ import Header from '../../components/Header/Header';
 import Introduction from './introduction';
 import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
 import Dialogs from '../../components/Dialogs/Dialogs';
-import { createStateMachine } from '../../libs/StateMachine';
-import rocket from '../../images/rocket-launch.gif';
+import withGame from '../../hoc/with-game';
+import Api from '../../services/api';
 
+import { createStateMachine } from '../../libs/StateMachine';
+
+import rocket from '../../images/rocket-launch.gif';
 import './styles.scss';
 
-// This page receives the current character in
-// the `location` attribute through
-// the state property of the <Link> component that
-// redirected the user to this page.
-export default class Tutorial extends Component {
+// This page receives the current character in the `location`
+// attribute through the state property of the <Link> component
+// that redirected the user to this page.
+class Tutorial extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      character: this.props.location.state.character
-    }
+    this.character = this.props.location.state.character;
 
     createStateMachine(this,
       ['introduction', 'confirmation', 'launching', 'dialogs']);
   }
 
+  componentDidMount() {
+    this.startGame();
+  }
+
+  startGame = async () => {
+    const levels = await Api.get('/api/levels');
+    const npcs = await Api.get('/api/characters?type=NPC');
+    this.props.game.start(this.props.location.state.character, levels.data, npcs.data);
+  }
+
   onIntroduction = () => {
     return (
       <Introduction
-        character={this.state.character}
+        character={this.character}
         dialogFinished={this.nextStage}
       />
     )
   }
 
   onConfirmation = () => {
-    const text = `You are about to start ${this.state.character.name}'s journey, are you ready?`
+    const text = `You are about to start ${this.character.name}'s journey, are you ready?`
 
     return (
       <ConfirmationBox
@@ -63,7 +73,7 @@ export default class Tutorial extends Component {
 
   onDialogs = () => {
     return (
-      <Dialogs character={this.state.character} />
+      <Dialogs />
     );
   }
 
@@ -76,3 +86,5 @@ export default class Tutorial extends Component {
     )
   }
 }
+
+export default withGame(Tutorial);
