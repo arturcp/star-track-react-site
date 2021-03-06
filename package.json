@@ -32,6 +32,9 @@
     "cypress:all": "cypress run",
     "postinstall": "husky install"
   },
+  "hooks": {
+    "pre-commit": "yarn test"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
