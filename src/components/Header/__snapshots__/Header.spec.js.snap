@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header UI should match the snapshot 1`] = `
+<header
+  id="top-header"
+>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="Launching rocket to space"
+      className="logo"
+      src="rocket.png"
+    />
+  </a>
+  <div
+    className="description"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <h2>
+        Star Track
+      </h2>
+      <br />
+    </a>
+    <label>
+      Use your knowledge to help Dr. Ken
+    </label>
+  </div>
+  <div
+    className="ranking-container"
+  >
+    <a
+      href="/ranking"
+      onClick={[Function]}
+    >
+      <img
+        alt="Ranking"
+        src="ranking.webp"
+      />
+    </a>
+  </div>
+</header>
+`;
