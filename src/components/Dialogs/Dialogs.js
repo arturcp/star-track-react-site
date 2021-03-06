@@ -1,37 +1,27 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Api from '../../services/api';
 import Dialog from './Dialog/Dialog';
+import withGame from '../../hoc/with-game';
+import Loading from '../Loading/Loading'
+
 import styled from 'styled-components';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-// import './styles.scss';
-
 class Dialogs extends Component {
   state = {
-    character: this.props.character,
     dialogs: [],
-    npcs: [],
-    dialogId: 1,
     currentDialogIndex: 0
   }
 
   componentDidMount() {
-    this.loadData();
+    this.loadDialogs();
   }
 
-  loadData = async () => {
-    await this.loadNPCs();
-    await this.loadDialogs(this.state.dialogId);
-  }
-
-  loadNPCs = async () => {
-    const response = await Api.get(`/api/characters?type=NPC`);
-    this.setState({ npcs: response.data });
-  };
-
-  loadDialogs = async (id) => {
-    const response = await Api.get(`/api/dialogs/${this.state.dialogId}`);
+  loadDialogs = async () => {
+    const dialogId = this.props.game.currentDialogId;
+    const { currentLevelId, currentStageId } = this.props.game;
+    const params = `${currentLevelId}/${currentStageId}/${dialogId}`;
+    const response = await Api.get(`/api/dialogs/${params}`);
     this.setState({ dialogs: response.data });
   };
 
@@ -39,42 +29,41 @@ class Dialogs extends Component {
     this.setState({ currentDialogIndex: this.state.currentDialogIndex + 1 });
   }
 
+  readyToShow = (npcs, dialogs, currentDialogIndex) => {
+    return dialogs.length > 0 && npcs.length > 0 && currentDialogIndex < dialogs.length;
+  }
+
   render() {
-    const { dialogs, npcs } = this.state;
+    const { npcs, character } = this.props.game;
+    const { dialogs } = this.state;
+    const { currentDialogIndex } = this.state;
 
     const Container = styled(TransitionGroup)`
       margin-top: 220px;
     `;
 
-    if (dialogs.length > 0 && npcs.length > 0 && this.state.currentDialogIndex < dialogs.length) {
+    if (this.readyToShow(npcs, dialogs, currentDialogIndex)) {
       return (
         <Container>
           <CSSTransition
-            key={this.state.currentDialogIndex}
+            key={currentDialogIndex}
             timeout={300}
             classNames="fade"
           >
             <Dialog
-              character={this.state.character}
+              character={character}
               npcs={npcs}
-              dialog={dialogs[this.state.currentDialogIndex]}
+              dialog={dialogs[currentDialogIndex]}
               dialogFinished={this.onDialogFinished}
             />
           </CSSTransition>
         </Container>
       )
     } else {
-      return null;
+      return <Loading />;
     }
   }
 }
 
-Dialogs.propTypes = {
-  // Character is an object that represents the
-  // player that is playing the game. It will be
-  // a Carmen, a Sam or a Diego necessarily, only
-  // PCs are expected.
-  character: PropTypes.object,
-}
+export default withGame(Dialogs);
 
-export default Dialogs;
