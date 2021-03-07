@@ -40,7 +40,13 @@ const Introduction = (props) => {
         <CSSTransition in appear timeout={600} classNames="fade">
           <>
             <DialogBox
-              text={character.history}
+              // text={character.history}
+              text={[
+                'Ouviram do ipiranga às margens plácidas',
+                'de um povo heroico o brado retumbante',
+                'e o sol da liberdade em raios fúlgidos',
+                'brilhou no céu da pátria nesse instante',
+              ]}
               speed={40}
               eraseSpeed={0}
               typingDelay={1300}
