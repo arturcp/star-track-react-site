@@ -41,7 +41,7 @@ const Introduction = (props) => {
           <>
             <DialogBox
               text={character.history}
-              speed={40}
+              speed={10}
               eraseSpeed={0}
               typingDelay={1300}
               dialogFinished={dialogFinished}
