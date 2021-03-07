@@ -38,7 +38,8 @@
     "eject": "react-scripts eject",
     "cypress": "cypress open",
     "cypress:all": "cypress run",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "lint": "eslint src/**/*.js"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
