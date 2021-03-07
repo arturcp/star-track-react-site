@@ -1,30 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Sprite extends Component {
-  render() {
-    const { data, image, position } = this.props;
-    const { x, y, width, height } = data;
+const sprite = (props) => {
+  const { data, image, position } = props;
+  const {
+    x, y, width, height,
+  } = data;
 
-    return(
-      <div
-        style={{
-          position: 'absolute',
-          top: position.y,
-          left: position.x,
-          width: `${width}px`,
-          height: `${height}px`,
-          backgroundImage: `url(${image})`,
-          backgroundRepeat: 'no repeat',
-          backgroundPosition: `-${x}px -${y}px`,
-        }}
-      >
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: position.y,
+        left: position.x,
+        width: `${width}px`,
+        height: `${height}px`,
+        backgroundImage: `url(${image})`,
+        backgroundRepeat: 'no repeat',
+        backgroundPosition: `-${x}px -${y}px`,
+      }}
+    />
+  );
+};
 
-Sprite.propTypes = {
+sprite.propTypes = {
   // Image is and object that represents a sprite.
   // To import a sprite, you can use the `import`:
   //
@@ -55,6 +54,6 @@ Sprite.propTypes = {
   // * width: width of the visible area of the sprite.
   // * height: width of the visible area of the sprite.
   data: PropTypes.object,
-}
+};
 
-export default Sprite;
+export default sprite;

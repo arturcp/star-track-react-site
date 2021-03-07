@@ -1,11 +1,10 @@
-import React from 'react';
-import { useState } from 'react';
-import DialogBox from '../../components/DialogBox/DialogBox';
-
-import Player from '../../components/Sprites/Player';
-import { spriteImages } from '../../components/Sprites/Images';
-import { introductionAnimation } from '../../animations/introduction';
+import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+
+import DialogBox from '../../components/DialogBox/DialogBox';
+import Player from '../../components/Sprites/Player';
+import spriteImages from '../../components/Sprites/Images';
+import introductionAnimation from '../../animations/introduction';
 
 const Introduction = (props) => {
   const [isAnimating, setAnimationStatus] = useState(true);
@@ -19,13 +18,13 @@ const Introduction = (props) => {
     onSequenceEnded: () => setAnimationStatus(false),
     waitBeforeStart: 1300,
     waitBeforeEnd: 1000,
-  }
+  };
+
+  const { dialogFinished } = props;
 
   return (
     <>
-      <h2 className="first-heading topic-heading">
-        {character.name}
-      </h2>
+      <h2 className="first-heading topic-heading">{character.name}</h2>
 
       <section className="animation-container">
         <Player
@@ -34,30 +33,24 @@ const Introduction = (props) => {
           animation={animation}
           initialPosition={{ x: 0, y: 100 }}
           allowInteraction={false}
-        >
-        </Player>
+        />
       </section>
 
       {!isAnimating && (
-        <CSSTransition
-          in={true}
-          appear={true}
-          timeout={600}
-          classNames="fade"
-        >
+        <CSSTransition in appear timeout={600} classNames="fade">
           <>
             <DialogBox
               text={character.history}
               speed={40}
               eraseSpeed={0}
               typingDelay={1300}
-              dialogFinished={props.dialogFinished}
+              dialogFinished={dialogFinished}
             />
           </>
         </CSSTransition>
       )}
     </>
-  )
-}
+  );
+};
 
 export default Introduction;

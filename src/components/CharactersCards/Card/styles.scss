@@ -55,7 +55,7 @@
 }
 
 .clash-card__level--default {
-  color: #EC9B3B;
+  color: #ec9b3b;
 }
 
 .clash-card__unit-name {
@@ -71,47 +71,46 @@
 }
 
 .clash-card__unit-stats--default {
-  background: #EC9B3B;
+  background: #ec9b3b;
 
   .one-third {
-    border-right: 1px solid #BD7C2F;
+    border-right: 1px solid #bd7c2f;
   }
 }
 
 .clash-card__unit-stats--archer {
-  background: #EE5487;
+  background: #ee5487;
 
   .one-third {
-    border-right: 1px solid #D04976;
+    border-right: 1px solid #d04976;
   }
 }
 
 .clash-card__unit-stats--giant {
-  background: #F6901A;
+  background: #f6901a;
 
   .one-third {
-    border-right: 1px solid darken(#F6901A, 8%);
+    border-right: 1px solid darken(#f6901a, 8%);
   }
 }
 
 .clash-card__unit-stats--goblin {
-  background: #82BB30;
+  background: #82bb30;
 
   .one-third {
-    border-right: 1px solid darken(#82BB30, 6%);
+    border-right: 1px solid darken(#82bb30, 6%);
   }
 }
 
 .clash-card__unit-stats--wizard {
-  background: #4FACFF;
+  background: #4facff;
 
   .one-third {
-    border-right: 1px solid darken(#4FACFF, 6%);
+    border-right: 1px solid darken(#4facff, 6%);
   }
 }
 
 .clash-card__unit-stats {
-
   color: white;
   font-weight: 700;
   border-bottom-left-radius: 14px;
@@ -151,7 +150,7 @@
   visibility: hidden;
   display: block;
   font-size: 0;
-  content: " ";
+  content: ' ';
   clear: both;
   height: 0;
 }

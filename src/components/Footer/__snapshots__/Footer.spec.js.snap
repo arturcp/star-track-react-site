@@ -7,9 +7,9 @@ exports[`Footer UI should match the snapshot 1`] = `
   <div
     className="description"
   >
-    <label>
+    <span>
       All rights reserved. © Star Track Corp, 2021. 
-    </label>
+    </span>
   </div>
 </footer>
 `;

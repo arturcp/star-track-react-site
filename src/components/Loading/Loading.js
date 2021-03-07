@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import loadingImage from '../../images/loading.gif'
+import loadingImage from '../../images/loading.gif';
 
 const Image = styled.img`
   position: absolute;
@@ -14,11 +14,8 @@ const Image = styled.img`
   z-index: 3;
 `;
 
-const loading = () => {
-  return(
-    <Image className="loading" src={loadingImage} alt="loading" />
-  )
-}
+const loading = () => (
+  <Image className="loading" src={loadingImage} alt="loading" />
+);
 
 export default loading;
-

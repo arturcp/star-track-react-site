@@ -6,8 +6,8 @@ import Game from './domains/game';
 class App extends Component {
   constructor(props) {
     super(props);
-    const game = new Game({}, this.updateGame);
-    this.state = { game };
+    // eslint-disable-next-line react/state-in-constructor
+    this.state = { game: new Game({}, this.updateGame) };
   }
 
   updateGame = (game) => {

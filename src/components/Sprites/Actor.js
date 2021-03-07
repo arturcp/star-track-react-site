@@ -1,25 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Sprite from '../../components/Sprites/Sprite';
+import Sprite from './Sprite';
 
-class Actor extends Component {
-  render() {
-    const { image, data, step, direction, position } = this.props;
-    const { width, height } = data;
-    return (
-      <Sprite
-        image={image}
-        position={position}
-        data={{
-          x: step * width,
-          y: direction * height,
-          width,
-          height
-        }}
-      >
-      </Sprite>
-    );
-  }
+const actor = (props) => {
+  const {
+    image, data, step, direction, position,
+  } = props;
+
+  const { width, height } = data;
+
+  return (
+    <Sprite
+      image={image}
+      position={position}
+      data={{
+        x: step * width,
+        y: direction * height,
+        width,
+        height,
+      }}
+    />
+  );
 };
 
 Sprite.propTypes = {
@@ -86,6 +87,6 @@ Sprite.propTypes = {
   //    up: 3,
   // }
   direction: PropTypes.number,
-}
+};
 
-export default Actor;
+export default actor;

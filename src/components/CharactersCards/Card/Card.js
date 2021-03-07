@@ -1,29 +1,24 @@
-import { Component } from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-class Card extends Component {
-  render() {
-    return (
-      <div className="wrapper">
-        <div className={`clash-card ${this.props.cardType}`}>
-          <div className="clash-card__image">
-            <img src={this.props.image} alt={this.props.title} />
-          </div>
-          <div className={`clash-card__level clash-card__level--${this.props.cardType}`}>{this.props.subtitle}</div>
-          <div className="clash-card__unit-name">{this.props.title}</div>
-          <div className="clash-card__unit-description">
-            {this.props.description}
-          </div>
-
-        </div>
+const card = (props) => (
+  <div className="wrapper">
+    <div className={`clash-card ${props.cardType}`}>
+      <div className="clash-card__image">
+        <img src={props.image} alt={props.title} />
       </div>
-    )
-  }
-}
+      <div className={`clash-card__level clash-card__level--${props.cardType}`}>
+        {props.subtitle}
+      </div>
+      <div className="clash-card__unit-name">{props.title}</div>
+      <div className="clash-card__unit-description">{props.description}</div>
+    </div>
+  </div>
+);
 
-Card.propTypes = {
+card.propTypes = {
   // The card's main title, displayed with a larger font-size.
   title: PropTypes.string,
 
@@ -44,7 +39,7 @@ Card.propTypes = {
   description: PropTypes.string,
 
   // Main image displayed in the card.
-  image: PropTypes.string
+  image: PropTypes.string,
 };
 
-export default Card;
+export default card;

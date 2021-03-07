@@ -4,27 +4,28 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const confirmationBox = (props) => {
-  const { title, text, buttonText, onClickHandler } = props;
+  const {
+    title, text, buttonText, onClickHandler,
+  } = props;
 
   return (
-    <CSSTransition
-      in={true}
-      appear={true}
-      timeout={600}
-      classNames="fade"
-    >
+    <CSSTransition in appear timeout={600} classNames="fade">
       <div className="confirmation-box">
         <h2>{title}</h2>
 
         <p>{text}</p>
 
-        <button className="call-to-action" onClick={onClickHandler}>
+        <button
+          type="button"
+          className="call-to-action"
+          onClick={onClickHandler}
+        >
           {buttonText}
         </button>
       </div>
     </CSSTransition>
-  )
-}
+  );
+};
 
 confirmationBox.propTypes = {
   // Title is a short warning that tells
@@ -41,6 +42,6 @@ confirmationBox.propTypes = {
   // Function that will be executed when the user
   // clicks the button.
   onClickHandler: PropTypes.func,
-}
+};
 
 export default confirmationBox;
