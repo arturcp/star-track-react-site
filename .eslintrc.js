@@ -34,5 +34,8 @@ module.exports = {
       },
     ],
     'max-nested-callbacks': ['error', 5],
+    'no-unused-vars': ['warn'],
+    'react/no-unused-prop-types': ['warn'],
+    'no-debugger': ['warn'],
   },
 };
