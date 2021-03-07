@@ -6,6 +6,10 @@ import Dialog from './Dialog/Dialog';
 import withGame from '../../hoc/with-game';
 import Loading from '../Loading/Loading';
 
+const Container = styled(TransitionGroup)`
+  margin-top: 220px;
+`;
+
 class Dialogs extends Component {
   state = {
     dialogs: [],
@@ -40,10 +44,6 @@ class Dialogs extends Component {
     const { npcs, character } = game;
     const { dialogs } = this.state;
     const { currentDialogIndex } = this.state;
-
-    const Container = styled(TransitionGroup)`
-      margin-top: 220px;
-    `;
 
     if (this.readyToShow(npcs, dialogs, currentDialogIndex)) {
       return (

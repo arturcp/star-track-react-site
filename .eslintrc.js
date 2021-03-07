@@ -22,7 +22,7 @@ module.exports = {
     'no-eval': 'error',
     indent: ['error', 2],
     quotes: ['error', 'single'],
-    'no-console': ['error', { allow: ['warn', 'info'] }],
+    'no-console': ['off'],
     'space-before-function-paren': ['error', 'never'],
     'prefer-arrow-callback': [0, { allowNamedFunctions: true }],
     'func-names': ['error', 'never'],

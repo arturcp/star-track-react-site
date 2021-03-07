@@ -114,13 +114,25 @@ const createStateMachine = (Component, states) => {
   const stateMachine = new StateMachine(data);
 
   Component.nextStage = () => {
-    Component.setState({ currentStage: stateMachine.next().value });
+    const newStage = stateMachine.next().value;
+    Component.setState({ currentStage: newStage });
+  };
+
+  let timeoutIsRunning = false;
+  Component.nextStageAfterPause = (delay) => {
+    if (!timeoutIsRunning) {
+      timeoutIsRunning = true;
+      setTimeout(() => {
+        Component.nextStage();
+        timeoutIsRunning = false;
+      }, delay);
+    }
   };
 
   Component.componentForCurrentStage = () => stateMachine.component();
-
   Component.stateMachine = stateMachine;
-  Component.setState({ currentStage: states[0] });
+
+  return states[0];
 };
 
 export default createStateMachine;

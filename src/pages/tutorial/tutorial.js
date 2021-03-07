@@ -5,7 +5,6 @@ import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
 import Dialogs from '../../components/Dialogs/Dialogs';
 import withGame from '../../hoc/with-game';
 import Api from '../../services/api';
-
 import createStateMachine from '../../libs/StateMachine';
 
 import rocket from '../../images/rocket-launch.gif';
@@ -21,12 +20,18 @@ class Tutorial extends Component {
     const { character } = location.state;
     this.character = character;
 
-    createStateMachine(this, [
+    const initialStage = createStateMachine(this, [
       'introduction',
       'confirmation',
       'launching',
       'dialogs',
     ]);
+
+    // eslint-disable-next-line react/state-in-constructor
+    this.state = {
+      // eslint-disable-next-line react/no-unused-state
+      currentStage: initialStage,
+    };
   }
 
   componentDidMount() {
@@ -59,12 +64,7 @@ class Tutorial extends Component {
   };
 
   onLaunching = () => {
-    const { currentStage } = this.state;
-    setTimeout(() => {
-      if (currentStage === 'launching') {
-        this.nextStage();
-      }
-    }, 5000);
+    this.nextStageAfterPause(5000);
 
     return <img className="rocket-launch" src={rocket} alt="Rocket launch" />;
   };

@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-const card = () => (
+const card = (props) => (
   <div className="wrapper">
-    <div className={`clash-card ${this.props.cardType}`}>
+    <div className={`clash-card ${props.cardType}`}>
       <div className="clash-card__image">
-        <img src={this.props.image} alt={this.props.title} />
+        <img src={props.image} alt={props.title} />
       </div>
-      <div
-        className={`clash-card__level clash-card__level--${this.props.cardType}`}>
-        {this.props.subtitle}
+      <div className={`clash-card__level clash-card__level--${props.cardType}`}>
+        {props.subtitle}
       </div>
-      <div className="clash-card__unit-name">{this.props.title}</div>
-      <div className="clash-card__unit-description">
-        {this.props.description}
-      </div>
+      <div className="clash-card__unit-name">{props.title}</div>
+      <div className="clash-card__unit-description">{props.description}</div>
     </div>
   </div>
 );

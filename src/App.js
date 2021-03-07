@@ -4,7 +4,11 @@ import GameContext from './context/game-context';
 import Game from './domains/game';
 
 class App extends Component {
-  state = { game: new Game({}, this.updateGame) };
+  constructor(props) {
+    super(props);
+    // eslint-disable-next-line react/state-in-constructor
+    this.state = { game: new Game({}, this.updateGame) };
+  }
 
   updateGame = (game) => {
     this.setState({ game });

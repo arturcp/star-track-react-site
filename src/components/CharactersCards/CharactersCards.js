@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Api from '../../services/api';
-
-import Card from './Card/Card';
 import Slider from 'react-slick';
+import Api from '../../services/api';
+import Card from './Card/Card';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -43,7 +42,7 @@ class CharactersCards extends Component {
               to={{
                 pathname: '/tutorial',
                 state: {
-                  character: character,
+                  character,
                 },
               }}>
               <Card
@@ -51,7 +50,8 @@ class CharactersCards extends Component {
                 subtitle={character.pronouns}
                 description={character.bio}
                 image={character.image_url}
-                cardType="default"></Card>
+                cardType="default"
+              />
             </Link>
           ))}
         </Slider>

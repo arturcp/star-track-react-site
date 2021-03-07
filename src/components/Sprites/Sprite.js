@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const sprite = () => {
-  const { data, image, position } = this.props;
+const sprite = (props) => {
+  const { data, image, position } = props;
   const { x, y, width, height } = data;
 
   return (

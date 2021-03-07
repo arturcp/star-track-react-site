@@ -12,14 +12,15 @@ const dialog = (props) => {
     return npcs.find((npc) => npc.id === npcId);
   };
 
-  const speaker = getSpeaker(dialog.npc_id);
-  const avatarDirection = dialog.character_type === 'PC' ? 'left' : 'right';
+  const speaker = getSpeaker(currentDialog.npc_id);
+  const avatarDirection =
+    currentDialog.character_type === 'PC' ? 'left' : 'right';
 
   return (
     <DialogBox
       avatar={speaker.image_url}
       name={speaker.name}
-      text={dialog.paragraphs}
+      text={currentDialog.paragraphs}
       labelColor={speaker.main_color}
       speed={40}
       eraseSpeed={0}

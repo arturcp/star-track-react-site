@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Sprite from './Sprite';
 
-const actor = () => {
-  const { image, data, step, direction, position } = this.props;
+const actor = (props) => {
+  const { image, data, step, direction, position } = props;
+
   const { width, height } = data;
 
   return (

@@ -40,7 +40,8 @@ const Introduction = (props) => {
         <CSSTransition in appear timeout={600} classNames="fade">
           <>
             <DialogBox
-              text={character.history}
+              // text={character.history}
+              text={['olá mundo', 'artur caliendo', 'agora vai']}
               speed={40}
               eraseSpeed={0}
               typingDelay={1300}

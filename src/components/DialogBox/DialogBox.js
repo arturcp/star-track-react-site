@@ -12,21 +12,23 @@ class DialogBox extends Component {
   };
 
   componentDidMount() {
-    document.addEventListener('keydown', this.onKeyPress, true);
+    document.addEventListener('keydown', this.onKeyPress);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyPress, true);
+    document.removeEventListener('keydown', this.onKeyPress);
   }
 
   changeBoxState = () => {
-    const { mode, currentIndex } = this.state;
+    const { mode } = this.state;
+    let { currentIndex } = this.state;
     const { text, dialogFinished } = this.props;
 
     if (mode === 'typing') {
       this.setState({ mode: 'flat' });
     } else {
-      this.setState({ currentIndex: currentIndex + 1 });
+      currentIndex = currentIndex + 1;
+      this.setState({ currentIndex: currentIndex });
       if (
         currentIndex > text.length - 1 &&
         typeof dialogFinished === 'function'
@@ -69,13 +71,11 @@ class DialogBox extends Component {
       labelColor,
       ...attributes
     } = this.props;
-    const extraClass = avatarDirection === 'left' ? '' : 'invert-on-mobile';
-    const { dialogBoxId, mode, currentIndex } = this.state;
+    const { mode, currentIndex } = this.state;
 
     return (
       <section
-        id={dialogBoxId}
-        className={`dialog-box-container ${extraClass}`}
+        className={`dialog-box-container`}
         onTouchStart={this.changeBoxState}>
         {this.renderAvatar(avatarDirection)}
 

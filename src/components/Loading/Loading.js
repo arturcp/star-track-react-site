@@ -14,8 +14,8 @@ const Image = styled.img`
   z-index: 3;
 `;
 
-const loading = () => {
-  return <Image className="loading" src={loadingImage} alt="loading" />;
-};
+const loading = () => (
+  <Image className="loading" src={loadingImage} alt="loading" />
+);
 
 export default loading;
