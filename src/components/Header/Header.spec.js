@@ -10,7 +10,7 @@ describe('Header UI', () => {
         <Header />
       </Router>,
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

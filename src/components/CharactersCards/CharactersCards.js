@@ -16,7 +16,7 @@ class CharactersCards extends Component {
     this.loadCharacters();
   }
 
-  loadCharacters = async () => {
+  loadCharacters = async() => {
     const response = await Api.get('/api/characters?type=PC');
     this.setState({ characters: response.data });
   };
@@ -44,7 +44,8 @@ class CharactersCards extends Component {
                 state: {
                   character,
                 },
-              }}>
+              }}
+            >
               <Card
                 title={character.name}
                 subtitle={character.pronouns}

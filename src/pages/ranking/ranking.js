@@ -16,7 +16,7 @@ export default class Ranking extends Component {
     this.loadRanking();
   }
 
-  loadRanking = async () => {
+  loadRanking = async() => {
     const response = await Api.get('/api/ranking');
     this.setState({ ranking: response.data });
   };
@@ -29,20 +29,23 @@ export default class Ranking extends Component {
     return (
       <td className="character">
         [ Playing with
-        {entry.character}]
+        {entry.character}
+        ]
       </td>
     );
   };
 
-  buildRows = (ranking) =>
-    ranking.map((entry, index) => (
-      <tr key={entry.id}>
-        <td>{index + 1}.</td>
-        <td>{entry.player_name}</td>
-        <td className="text-right">{entry.points}</td>
-        {this.characterColumn(entry)}
-      </tr>
-    ));
+  buildRows = (ranking) => ranking.map((entry, index) => (
+    <tr key={entry.id}>
+      <td>
+        {index + 1}
+        .
+      </td>
+      <td>{entry.player_name}</td>
+      <td className="text-right">{entry.points}</td>
+      {this.characterColumn(entry)}
+    </tr>
+  ));
 
   render() {
     const { ranking } = this.state;

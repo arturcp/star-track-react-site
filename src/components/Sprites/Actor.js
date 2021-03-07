@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import Sprite from './Sprite';
 
 const actor = (props) => {
-  const { image, data, step, direction, position } = props;
+  const {
+    image, data, step, direction, position,
+  } = props;
 
   const { width, height } = data;
 

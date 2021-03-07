@@ -7,11 +7,15 @@ import useWalk from '../../hooks/use-walk/useWalk';
 import { animate } from '../../animations/animationUtils';
 
 const Player = (props) => {
-  const { image, data, animation, allowInteraction } = props;
+  const {
+    image, data, animation, allowInteraction,
+  } = props;
 
   const { initialPosition } = props;
 
-  const { direction, step, walk, position } = useWalk(3, initialPosition);
+  const {
+    direction, step, walk, position,
+  } = useWalk(3, initialPosition);
 
   const [isAnimating, setAnimationStatus] = useState(false);
 

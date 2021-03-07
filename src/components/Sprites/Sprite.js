@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 const sprite = (props) => {
   const { data, image, position } = props;
-  const { x, y, width, height } = data;
+  const {
+    x, y, width, height,
+  } = data;
 
   return (
     <div

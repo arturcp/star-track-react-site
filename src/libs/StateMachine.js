@@ -70,9 +70,9 @@ class StateMachine {
   component = () => {
     const current = this.current();
     if (
-      current &&
-      current.component &&
-      typeof current.component === 'function'
+      current
+      && current.component
+      && typeof current.component === 'function'
     ) {
       return current.component(this.data.mainComponent);
     }

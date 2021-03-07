@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 
 const confirmationBox = (props) => {
-  const { title, text, buttonText, onClickHandler } = props;
+  const {
+    title, text, buttonText, onClickHandler,
+  } = props;
 
   return (
     <CSSTransition in appear timeout={600} classNames="fade">
@@ -16,7 +18,8 @@ const confirmationBox = (props) => {
         <button
           type="button"
           className="call-to-action"
-          onClick={onClickHandler}>
+          onClick={onClickHandler}
+        >
           {buttonText}
         </button>
       </div>

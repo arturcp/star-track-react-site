@@ -38,7 +38,7 @@ class Tutorial extends Component {
     this.startGame();
   }
 
-  startGame = async () => {
+  startGame = async() => {
     const levels = await Api.get('/api/levels');
     const npcs = await Api.get('/api/characters?type=NPC');
     const { location, game } = this.props;

@@ -10,7 +10,7 @@ describe('Footer UI', () => {
         <Footer />
       </Router>,
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

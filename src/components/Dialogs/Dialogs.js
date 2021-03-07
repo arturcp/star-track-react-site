@@ -20,7 +20,7 @@ class Dialogs extends Component {
     this.loadDialogs();
   }
 
-  loadDialogs = async () => {
+  loadDialogs = async() => {
     const { game } = this.props;
     const dialogId = game.currentDialogId;
     const { currentLevelId, currentStageId } = game;
@@ -34,10 +34,9 @@ class Dialogs extends Component {
     this.setState({ currentDialogIndex: currentDialogIndex + 1 });
   };
 
-  readyToShow = (npcs, dialogs, currentDialogIndex) =>
-    dialogs.length > 0 &&
-    npcs.length > 0 &&
-    currentDialogIndex < dialogs.length;
+  readyToShow = (npcs, dialogs, currentDialogIndex) => dialogs.length > 0
+    && npcs.length > 0
+    && currentDialogIndex < dialogs.length;
 
   render() {
     const { game } = this.props;
@@ -51,7 +50,8 @@ class Dialogs extends Component {
           <CSSTransition
             key={currentDialogIndex}
             timeout={300}
-            classNames="fade">
+            classNames="fade"
+          >
             <Dialog
               character={character}
               npcs={npcs}

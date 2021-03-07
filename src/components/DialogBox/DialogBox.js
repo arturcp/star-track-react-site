@@ -27,11 +27,11 @@ class DialogBox extends Component {
     if (mode === 'typing') {
       this.setState({ mode: 'flat' });
     } else {
-      currentIndex = currentIndex + 1;
-      this.setState({ currentIndex: currentIndex });
+      currentIndex += 1;
+      this.setState({ currentIndex });
       if (
-        currentIndex > text.length - 1 &&
-        typeof dialogFinished === 'function'
+        currentIndex > text.length - 1
+        && typeof dialogFinished === 'function'
       ) {
         this.setState({ currentIndex: 0 });
         dialogFinished();
@@ -55,7 +55,8 @@ class DialogBox extends Component {
           <img src={avatar} alt="avatar" />
           <div
             className="avatar-name"
-            style={{ backgroundColor: labelColor || '#ccc' }}>
+            style={{ backgroundColor: labelColor || '#ccc' }}
+          >
             {name}
           </div>
         </div>
@@ -75,8 +76,9 @@ class DialogBox extends Component {
 
     return (
       <section
-        className={`dialog-box-container`}
-        onTouchStart={this.changeBoxState}>
+        className="dialog-box-container"
+        onTouchStart={this.changeBoxState}
+      >
         {this.renderAvatar(avatarDirection)}
 
         <div className="dialog-box">
