@@ -1,3 +1,4 @@
+/* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
 import ReactTypingEffect from 'react-typing-effect';
 import { CSSTransition } from 'react-transition-group';
@@ -11,7 +12,19 @@ class DialogBox extends Component {
     currentIndex: 0,
   };
 
+  constructor(props) {
+    super(props);
+    const { text } = this.props;
+
+    this.state = {
+      mode: 'typing',
+      currentIndex: 0,
+      currentText: text[0],
+    };
+  }
+
   componentDidMount() {
+    document.removeEventListener('keydown', this.onKeyPress);
     document.addEventListener('keydown', this.onKeyPress);
   }
 
@@ -24,19 +37,23 @@ class DialogBox extends Component {
     let { currentIndex } = this.state;
     const { text, dialogFinished } = this.props;
 
-    if (mode === 'typing') {
+    const typingCompleted = document.querySelector('.dialog-box div').textContent === text[currentIndex];
+    const userInterrupedTyping = mode === 'typing' && !typingCompleted;
+
+    if (userInterrupedTyping) {
       this.setState({ mode: 'flat' });
     } else {
       currentIndex += 1;
-      this.setState({ currentIndex });
-      if (
-        currentIndex > text.length - 1
-        && typeof dialogFinished === 'function'
-      ) {
-        this.setState({ currentIndex: 0 });
+      const endOfDialog = currentIndex > text.length - 1;
+
+      if (endOfDialog) {
         dialogFinished();
       } else {
-        this.setState({ mode: 'typing' });
+        this.setState({
+          mode: 'typing',
+          currentIndex,
+          currentText: text[currentIndex],
+        });
       }
     }
   };
@@ -72,7 +89,10 @@ class DialogBox extends Component {
       labelColor,
       ...attributes
     } = this.props;
-    const { mode, currentIndex } = this.state;
+    const { mode, currentText } = this.state;
+
+    const hintText = window.outerWidth < 576
+      ? 'Tap to continue' : 'Press enter to continue';
 
     return (
       <section
@@ -83,15 +103,20 @@ class DialogBox extends Component {
 
         <div className="dialog-box">
           {mode === 'typing' ? (
-            <ReactTypingEffect text={text[currentIndex]} {...attributes} />
+            <ReactTypingEffect
+              key={currentText.replace(' ', '-')}
+              text={currentText}
+              {...attributes}
+              eraseDelay={1000000}
+            />
           ) : (
             <CSSTransition in appear timeout={1600} classNames="fade">
               <div>
-                {text[currentIndex]}
-                <span className="key-hint">[Continue...]</span>
+                {currentText}
               </div>
             </CSSTransition>
           )}
+          <span className="key-hint">{hintText}</span>
         </div>
       </section>
     );
