@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import Api from '../../services/api';
 import Dialog from './Dialog/Dialog';
@@ -66,5 +67,12 @@ class Dialogs extends Component {
     return <Loading />;
   }
 }
+
+Dialog.PropTypes = {
+  // Game is a structure that holds all information about
+  // the current game. To know more about this object,
+  // check `src/domains/game.js`
+  game: PropTypes.object,
+};
 
 export default withGame(Dialogs);

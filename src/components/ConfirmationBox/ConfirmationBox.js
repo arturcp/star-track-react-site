@@ -37,11 +37,11 @@ confirmationBox.propTypes = {
 
   // buttonText is the text that will be written
   // inside the confirmation box's button.
-  buttonText: PropTypes.string,
+  buttonText: PropTypes.string.isRequired,
 
   // Function that will be executed when the user
   // clicks the button.
-  onClickHandler: PropTypes.func,
+  onClickHandler: PropTypes.func.isRequired,
 };
 
 export default confirmationBox;
