@@ -152,7 +152,7 @@ DialogBox.propTypes = {
   //   to interact again to let the dialog continue. Then,
   //   the next paragraph will be shown using the typing
   //   effect once again.
-  text: PropTypes.array,
+  text: PropTypes.array.isRequired,
 
   // Below the avatar there is a label with the name of
   // the speaker. The labelColor property is the background

@@ -20,7 +20,7 @@ const card = (props) => (
 
 card.propTypes = {
   // The card's main title, displayed with a larger font-size.
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
 
   // Subtitle of the card, displayed with a smaller font and
   // above the title.
@@ -33,13 +33,13 @@ card.propTypes = {
   // * default: the card will show a large image at the top,
   //   followed by the subtitle in orange, the title and the
   //   description.
-  cardType: PropTypes.string,
+  cardType: PropTypes.string.isRequired,
 
   // Descriptive text that will be displayed in the card.
   description: PropTypes.string,
 
   // Main image displayed in the card.
-  image: PropTypes.string,
+  image: PropTypes.string.isRequired,
 };
 
 export default card;
