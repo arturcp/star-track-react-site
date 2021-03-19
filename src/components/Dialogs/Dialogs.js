@@ -68,7 +68,7 @@ class Dialogs extends Component {
   }
 }
 
-Dialog.PropTypes = {
+Dialog.propTypes = {
   // Game is a structure that holds all information about
   // the current game. To know more about this object,
   // check `src/domains/game.js`
