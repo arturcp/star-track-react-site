@@ -2,7 +2,7 @@
 import { sleep } from './animationUtils';
 
 export default function introductionAnimation() {
-  const delay = 360;
+  const delay = 60;
   async function moveRight(walk) {
     let steps = 20;
     if (window.outerWidth < 576) {

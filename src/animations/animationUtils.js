@@ -14,7 +14,8 @@ export async function animate(animation = {}, walk) {
     await sleep(waitBeforeStart);
 
     for (let i = 0; i < sequence.length; i += 1) {
-      sequence[i](walk);
+      // eslint-disable-next-line no-await-in-loop
+      await sequence[i](walk);
     }
     await sleep(waitBeforeEnd);
     onSequenceEnded();
