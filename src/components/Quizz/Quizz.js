@@ -21,12 +21,14 @@ const quizz = (props) => {
       <div className="break" />
 
       <QuizzOptions
+        type="slider"
         question={question}
         options={options}
+        baseLetter="E"
       />
 
       <div className="break" />
-      <button type="button" onClick={props.onClick}>Next</button>
+      <button className="answer-button" type="button" onClick={props.onClick}>Next</button>
     </div>
   );
 };
