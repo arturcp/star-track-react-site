@@ -6,6 +6,7 @@ import Dialogs from '../../components/Dialogs/Dialogs';
 import withGame from '../../hoc/with-game';
 import Api from '../../services/api';
 import createStateMachine from '../../libs/StateMachine';
+import InfoBar from '../../components/InfoBar/InfoBar';
 
 import rocket from '../../images/rocket-launch.gif';
 import './styles.scss';
@@ -64,17 +65,28 @@ class Tutorial extends Component {
   };
 
   onLaunching = () => {
+    const { game } = this.props;
+    game.changeStatus(game.STATUS.loading);
+
     this.nextStageAfterPause(5000);
 
     return <img className="rocket-launch" src={rocket} alt="Rocket launch" />;
   };
 
-  onDialogs = () => <Dialogs />;
+  onDialogs = () => {
+    const { game } = this.props;
+    game.changeStatus(game.STATUS.tutorial);
+
+    return (
+      <Dialogs />
+    );
+  }
 
   render() {
     return (
       <section id="tutorial">
         <Header />
+        <InfoBar />
         {this.componentForCurrentStage()}
       </section>
     );

@@ -3,6 +3,9 @@ import uuid from 'react-uuid';
 export default class Game {
   STATUS = {
     initial: 'initial',
+    history: 'on history',
+    loading: 'loading',
+    tutorial: 'on tutorial',
     started: 'started',
     finished: 'finished',
   };
@@ -40,7 +43,35 @@ export default class Game {
     this.character = character;
     this.levels = levels;
     this.npcs = npcs;
-    this.status = this.STATUS.started;
+    this.status = this.STATUS.history;
     this.save();
   };
+
+  changeStatus = (newStatus) => {
+    this.status = newStatus;
+  }
+
+  userLocation = () => {
+    let location = '';
+
+    switch (this.status) {
+    case this.STATUS.history:
+      location = `${this.character.name}'s history`;
+      break;
+    case this.STATUS.tutorial:
+      location = 'Tutorial';
+      break;
+    case this.STATUS.loading:
+      location = 'Loading...';
+      break;
+    default:
+      location = '';
+    }
+
+    return location;
+  }
+
+  currentLevel = () => {
+    debugger;
+  }
 }

@@ -24,8 +24,7 @@ const Introduction = (props) => {
 
   return (
     <>
-      <h2 className="first-heading topic-heading">{character.name}</h2>
-
+      <br />
       <section className="animation-container">
         <Player
           image={images[character.name.toLowerCase()]}
