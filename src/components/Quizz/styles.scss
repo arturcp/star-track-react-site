@@ -1,0 +1,43 @@
+/* TODO: these variables are duplicated. See how to centralize them */
+$main-color: #fff;
+$secondary-color: #f8cd1b;
+
+.quizz {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  img {
+    width: 70%;
+  }
+
+  /* Inserting this collapsed row between two flex items will make
+  * the flex item that comes after it break to a new row */
+  .break {
+    flex-basis: 100%;
+    height: 0;
+  }
+
+  h2 {
+    width: 100%;
+    text-align: center;
+    color: #000;
+  }
+
+  .options-container {
+    width: 50%;
+  }
+}
+
+.answer-button {
+  background-color: $secondary-color;
+  border: none;
+  color: #000;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+}
