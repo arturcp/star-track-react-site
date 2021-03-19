@@ -1,0 +1,17 @@
+.quizz {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  img {
+    width: 70%;
+  }
+
+  /* Inserting this collapsed row between two flex items will make
+  * the flex item that comes after it break to a new row */
+  .break {
+    flex-basis: 100%;
+    height: 0;
+  }
+}

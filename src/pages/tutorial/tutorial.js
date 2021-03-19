@@ -3,10 +3,11 @@ import Header from '../../components/Header/Header';
 import Introduction from './introduction';
 import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
 import Dialogs from '../../components/Dialogs/Dialogs';
+import InfoBar from '../../components/InfoBar/InfoBar';
+import Quizz from '../../components/Quizz/Quizz';
 import withGame from '../../hoc/with-game';
 import Api from '../../services/api';
 import createStateMachine from '../../libs/StateMachine';
-import InfoBar from '../../components/InfoBar/InfoBar';
 
 import rocket from '../../images/rocket-launch.gif';
 import './styles.scss';
@@ -87,7 +88,8 @@ class Tutorial extends Component {
       <section id="tutorial">
         <Header />
         <InfoBar />
-        {this.componentForCurrentStage()}
+        <Quizz />
+        {/* {this.componentForCurrentStage()} */}
       </section>
     );
   }
