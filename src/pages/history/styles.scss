@@ -1,0 +1,42 @@
+/* TODO: these variables are duplicated. See how to centralize them */
+$main-color: #fff;
+$secondary-color: #f8cd1b;
+
+#history {
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    img {
+      border: 1px solid #000;
+      max-height: 160px;
+    }
+  }
+
+  .rocket-launch {
+    width: 100%;
+
+    @media only screen and (max-width: 576px) {
+      margin-top: 96px;
+    }
+  }
+
+  .animation-container {
+    position: relative;
+    width: 500px;
+    height: 270px;
+    margin: 0 auto;
+    border: 1px solid #000;
+
+    background-image: url(../../images/scenarios/lab.jpeg);
+    background-size: 500px 270px;
+    background-repeat: no-repeat;
+
+    @media only screen and (max-width: 576px) {
+      width: 100%;
+      background-size: 100% 100%;
+    }
+  }
+}

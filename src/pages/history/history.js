@@ -85,7 +85,7 @@ class History extends Component {
 
   render() {
     return (
-      <section id="tutorial">
+      <section id="history">
         <Header />
         <InfoBar />
         {this.componentForCurrentStage()}

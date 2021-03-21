@@ -30,7 +30,7 @@ const Introduction = (props) => {
           image={images[character.name.toLowerCase()]}
           data={data}
           animation={animation}
-          initialPosition={{ x: 0, y: 100 }}
+          initialPosition={{ x: 0, y: 215 }}
           allowInteraction={false}
         />
       </section>
