@@ -44,20 +44,14 @@ const useWalk = (maxSteps, initialData, movementsRestrictions) => {
     }
 
     const nextX = position.x + modifier[currentDirection].x;
-    if (movementsRestrictions.maxX != null && nextX > movementsRestrictions.maxX) {
-      return false;
-    }
-
-    if (movementsRestrictions.minX != null && nextX < movementsRestrictions.minX) {
-      return false;
-    }
-
     const nextY = position.y + modifier[currentDirection].y;
-    if (movementsRestrictions.maxY != null && nextY > movementsRestrictions.maxY) {
-      return false;
-    }
 
-    if (movementsRestrictions.minY != null && nextY < movementsRestrictions.minY) {
+    if (
+      (movementsRestrictions.maxX != null && nextX > movementsRestrictions.maxX)
+      || (movementsRestrictions.minX != null && nextX < movementsRestrictions.minX)
+      || (movementsRestrictions.maxY != null && nextY > movementsRestrictions.maxY)
+      || (movementsRestrictions.minY != null && nextY < movementsRestrictions.minY)
+    ) {
       return false;
     }
 
@@ -84,7 +78,13 @@ const useWalk = (maxSteps, initialData, movementsRestrictions) => {
         }
         return directions[newDirection];
       });
-      setStep((prev) => (prev < maxSteps - 1 ? prev + 1 : 0));
+      if (isMovementAllowed(newDirection)) {
+        setStep((prev) => (prev < maxSteps - 1 ? prev + 1 : 0));
+      } else {
+        // If movement is not allowed, change the character
+        // to make it stand still instead of having a foot ahead.
+        setStep(CONSTANTS.MOVEMENT.STOPPED);
+      }
     }
   };
 
