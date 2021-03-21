@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 
-import DialogBox from '../../components/DialogBox/DialogBox';
+// import { CSSTransition } from 'react-transition-group';
+
+// import DialogBox from '../../components/DialogBox/DialogBox';
 import Player from '../../components/Sprites/Player';
 import spriteImages from '../../components/Sprites/Images';
-import introductionAnimation from './introductionAnimation';
+// import introductionAnimation from './introductionAnimation';
 
 import CONSTANTS from '../../domains/constants';
 
 const Introduction = (props) => {
-  const [isAnimating, setAnimationStatus] = useState(true);
+  // const [isAnimating, setAnimationStatus] = useState(true);
 
   const { character } = props;
   const images = spriteImages();
 
-  const animation = {
-    sequence: introductionAnimation(),
-    onSequenceEnded: () => setAnimationStatus(false),
-    waitBeforeStart: 1300,
-    waitBeforeEnd: 1000,
-  };
+  // const animation = {
+  //   sequence: introductionAnimation(),
+  //   onSequenceEnded: () => setAnimationStatus(false),
+  //   waitBeforeStart: 1300,
+  //   waitBeforeEnd: 1000,
+  // };
 
-  const { dialogFinished } = props;
+  const { stageFinished } = props;
 
   return (
     <>
@@ -41,6 +43,10 @@ const Introduction = (props) => {
             maxX: 236,
             minX: 0,
           }}
+          destination={{
+            x: 234,
+            arrived: stageFinished,
+          }}
         />
 
         <Player
@@ -55,7 +61,7 @@ const Introduction = (props) => {
         />
       </section>
 
-      {!isAnimating && (
+      {/* {!isAnimating && (
         <CSSTransition in appear timeout={600} classNames="fade">
           <>
             <DialogBox
@@ -63,13 +69,23 @@ const Introduction = (props) => {
               speed={10}
               eraseSpeed={0}
               typingDelay={1300}
-              dialogFinished={dialogFinished}
+              dialogFinished={stageFinished}
             />
           </>
         </CSSTransition>
-      )}
+      )} */}
     </>
   );
+};
+
+Introduction.propTypes = {
+  // Character of the current user (Carmen, Sam or Diego)
+  character: PropTypes.object,
+
+  // Function that will be executed when this stage is over.
+  // In this stage, the end happens when the character reachs
+  // a position close to Dr. Ken.
+  stageFinished: PropTypes.func,
 };
 
 export default Introduction;

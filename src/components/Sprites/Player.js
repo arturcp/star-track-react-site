@@ -8,7 +8,13 @@ import { animate } from '../../libs/animationUtils';
 
 const Player = (props) => {
   const {
-    image, data, animation, allowInteraction, initialData, movementsRestrictions,
+    image,
+    data,
+    animation,
+    allowInteraction,
+    initialData,
+    movementsRestrictions,
+    destination,
   } = props;
 
   const maxSteps = 3;
@@ -24,6 +30,10 @@ const Player = (props) => {
       const chosenDirection = e.key.replace('Arrow', '').toLowerCase();
       if (!movementsRestrictions || movementsRestrictions.directions.includes(chosenDirection)) {
         walk(chosenDirection);
+
+        if (position.x === destination.x || position.y === destination.y) {
+          destination.arrived();
+        }
       }
       e.preventDefault();
     }

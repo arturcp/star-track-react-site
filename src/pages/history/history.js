@@ -49,7 +49,7 @@ class History extends Component {
   };
 
   onIntroduction = () => (
-    <Introduction character={this.character} dialogFinished={this.nextStage} />
+    <Introduction character={this.character} stageFinished={this.nextStage} />
   );
 
   onConfirmation = () => {
