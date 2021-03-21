@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop */
-import { sleep } from './animationUtils';
+import { sleep } from '../../libs/animationUtils';
 
 export default function introductionAnimation() {
   const delay = 60;
@@ -13,6 +13,7 @@ export default function introductionAnimation() {
       walk('right');
     }
   }
+
   async function moveDown(walk) {
     for (let i = 0; i < 1; i += 1) {
       await sleep(delay);

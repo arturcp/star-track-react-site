@@ -72,6 +72,6 @@ export default class Game {
   }
 
   currentLevel = () => {
-    debugger;
+    // debugger;
   }
 }

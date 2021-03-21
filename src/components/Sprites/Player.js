@@ -4,18 +4,20 @@ import PropTypes from 'prop-types';
 import Actor from './Actor';
 import useKeyPress from '../../hooks/use-key-press/useKeyPress';
 import useWalk from '../../hooks/use-walk/useWalk';
-import { animate } from '../../animations/animationUtils';
+import { animate } from '../../libs/animationUtils';
 
 const Player = (props) => {
   const {
     image, data, animation, allowInteraction,
   } = props;
 
-  const { initialPosition } = props;
+  const { initialPosition, initialStep, initialDirection } = props;
 
   const {
     direction, step, walk, position,
-  } = useWalk(3, initialPosition);
+  } = useWalk(3, initialPosition, initialStep, initialDirection);
+
+  console.log(step);
 
   const [isAnimating, setAnimationStatus] = useState(false);
 
@@ -102,6 +104,17 @@ Player.propTypes = {
   //
   // The valid keys for this hash are x and y.
   initialPosition: PropTypes.object,
+
+  // Step is the column of the sprite that will be displayed.
+  // To start the image in a given column, set the initialStep.
+  initialStep: PropTypes.number,
+
+  // Each row in the sprite represents a different direction.
+  // To start the image in a given direction (row), set the
+  // initialDirection.
+  // Check the list of directions and their numeric code at
+  // `src/hooks/use-walk/useWalk.js`.
+  initialDirection: PropTypes.number,
 };
 
 export default Player;
