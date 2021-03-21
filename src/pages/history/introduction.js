@@ -23,6 +23,10 @@ const Introduction = (props) => {
 
   const { dialogFinished } = props;
 
+  // Show lab, dr and PC
+  // wait a few secons and open hint: "go talk to the dr."
+  // when they are close, dr ken walks down and turn left to talk to PC
+  // Dialog starts.
   return (
     <>
       <br />
@@ -30,9 +34,9 @@ const Introduction = (props) => {
         <Player
           image={images[character.name.toLowerCase()]}
           data={{ width: 64, height: 96 }}
-          animation={animation}
+          // animation={animation}
           initialPosition={{ x: 0, y: 160 }}
-          allowInteraction={false}
+          allowInteraction
         />
 
         <Player
@@ -41,7 +45,7 @@ const Introduction = (props) => {
           initialPosition={{ x: 300, y: 180 }}
           initialStep={CONSTANTS.MOVEMENT.STOPPED}
           initialDirection={CONSTANTS.DIRECTIONS.UP}
-          allowInteraction
+          allowInteraction={false}
         />
       </section>
 
