@@ -31,9 +31,15 @@ const Introduction = (props) => {
           image={images[character.name.toLowerCase()]}
           data={{ width: 64, height: 96 }}
           // animation={animation}
-          allowInteraction
+          allowInteraction // isso vai mudar de acordo com o stage atual,
+          // quando Ken for falar, tem que ser false
           initialData={{
             position: { x: 0, y: 160 },
+          }}
+          movementsRestrictions={{
+            directions: ['left', 'right'],
+            maxX: 236,
+            minX: 0,
           }}
         />
 

@@ -8,21 +8,23 @@ import { animate } from '../../libs/animationUtils';
 
 const Player = (props) => {
   const {
-    image, data, animation, allowInteraction, initialData,
+    image, data, animation, allowInteraction, initialData, movementsRestrictions,
   } = props;
 
   const maxSteps = 3;
 
   const {
     direction, step, walk, position,
-  } = useWalk(maxSteps, initialData);
+  } = useWalk(maxSteps, initialData, movementsRestrictions);
 
   const [isAnimating, setAnimationStatus] = useState(false);
 
   useKeyPress((e) => {
     if (allowInteraction) {
       const chosenDirection = e.key.replace('Arrow', '').toLowerCase();
-      walk(chosenDirection);
+      if (!movementsRestrictions || movementsRestrictions.directions.includes(chosenDirection)) {
+        walk(chosenDirection);
+      }
       e.preventDefault();
     }
   });

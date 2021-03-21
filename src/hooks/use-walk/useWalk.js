@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import CONSTANTS from '../../domains/constants';
 
-const useWalk = (maxSteps, initialData) => {
+const useWalk = (maxSteps, initialData, movementsRestrictions) => {
   const defaultInitialData = {
     position: { x: 0, y: 0 },
     step: CONSTANTS.MOVEMENT.STOPPED,
@@ -33,11 +33,47 @@ const useWalk = (maxSteps, initialData) => {
     up: { x: 0, y: -stepSize },
   };
 
+  const isMovementAllowed = (currentDirection) => {
+    if (!movementsRestrictions) {
+      return true;
+    }
+
+    const validDirections = movementsRestrictions.directions || [];
+    if (!validDirections.includes(currentDirection)) {
+      return false;
+    }
+
+    const nextX = position.x + modifier[currentDirection].x;
+    if (movementsRestrictions.maxX != null && nextX > movementsRestrictions.maxX) {
+      return false;
+    }
+
+    if (movementsRestrictions.minX != null && nextX < movementsRestrictions.minX) {
+      return false;
+    }
+
+    const nextY = position.y + modifier[currentDirection].y;
+    if (movementsRestrictions.maxY != null && nextY > movementsRestrictions.maxY) {
+      return false;
+    }
+
+    if (movementsRestrictions.minY != null && nextY < movementsRestrictions.minY) {
+      return false;
+    }
+
+    return true;
+  };
+
   const move = (newDirection) => {
-    setPosition((prev) => ({
-      x: prev.x + modifier[newDirection].x,
-      y: prev.y + modifier[newDirection].y,
-    }));
+    if (isMovementAllowed(newDirection)) {
+      setPosition((prev) => ({
+        x: prev.x + modifier[newDirection].x,
+        y: prev.y + modifier[newDirection].y,
+      }));
+      return true;
+    }
+
+    return false;
   };
 
   const walk = (newDirection) => {
