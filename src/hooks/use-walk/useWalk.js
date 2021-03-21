@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import CONSTANTS from '../../domains/constants';
 
-const useWalk = (maxSteps, initialPosition = { x: 0, y: 0 },
-  initialStep = CONSTANTS.MOVEMENT.STOPPED,
-  initialDirection = CONSTANTS.DIRECTIONS.RIGHT) => {
+const useWalk = (maxSteps, initialData) => {
+  const defaultInitialData = {
+    position: { x: 0, y: 0 },
+    step: CONSTANTS.MOVEMENT.STOPPED,
+    direction: CONSTANTS.DIRECTIONS.RIGHT,
+  };
+  const data = { ...defaultInitialData, ...initialData };
+  const {
+    position: initialPosition,
+    step: initialStep,
+    direction: initialDirection,
+  } = data;
+
   const [position, setPosition] = useState(initialPosition);
-  const [direction, setDirection] = useState(initialDirection); // Right is the default direction
+  const [direction, setDirection] = useState(initialDirection);
   const [step, setStep] = useState(initialStep);
   const directions = {
     down: CONSTANTS.DIRECTIONS.DOWN,
