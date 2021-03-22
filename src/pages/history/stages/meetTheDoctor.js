@@ -15,7 +15,7 @@ const meetTheDoctor = (props) => {
 
   return (
     <>
-      <AnimationScenario scenario="doctor-lab">
+      <AnimationScenario scenario="doctor-lab" cockpit={{ show: true }}>
         <Player
           image={images[character.name.toLowerCase()]}
           data={CONSTANTS.PC.PLAYER_DATA}
@@ -25,11 +25,11 @@ const meetTheDoctor = (props) => {
           }}
           movementsRestrictions={{
             directions: ['left', 'right'],
-            maxX: 236,
+            maxX: 227,
             minX: 0,
           }}
           destination={{
-            x: 234,
+            x: 216,
             arrived: stageFinished,
           }}
         />
@@ -39,7 +39,7 @@ const meetTheDoctor = (props) => {
           data={CONSTANTS.DRKEN.PLAYER_DATA}
           allowInteraction={false}
           initialData={{
-            position: { x: 300, y: 180 },
+            position: { x: 280, y: 180 },
             direction: CONSTANTS.DIRECTIONS.UP,
             step: CONSTANTS.MOVEMENT.STOPPED,
           }}

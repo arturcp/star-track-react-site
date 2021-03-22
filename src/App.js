@@ -3,6 +3,8 @@ import Routes from './routes';
 import GameContext from './context/game-context';
 import Game from './domains/game';
 
+import './App.scss';
+
 class App extends Component {
   constructor(props) {
     super(props);

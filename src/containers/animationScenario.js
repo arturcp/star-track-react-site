@@ -3,11 +3,23 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-const animationScenario = (props) => (
-  <section className={`animation-scenario ${props.scenario}`}>
-    {props.children}
-  </section>
-);
+const animationScenario = (props) => {
+  const { scenario } = props;
+  const { show, closingAnimation } = props.cockpit;
+  const classes = `animation-scenario ${scenario}`;
+  const animate = closingAnimation === true;
+
+  return (
+    <section className={classes}>
+      {props.children}
+      {(show || animate) && (
+        <div className={`cockpit ${animate ? 'scale-out-ver-top' : ''}`}>
+          teste
+        </div>
+      )}
+    </section>
+  );
+};
 
 animationScenario.propTypes = {
   // Name of the scenario. This property is strongly linked
@@ -19,6 +31,26 @@ animationScenario.propTypes = {
   //
   // Check this container's css to see the available classes.
   scenario: PropTypes.string,
+
+  // Information about the cockpit. Cockpit is an area just
+  // below the scenario with extra hints and, for mobile
+  // devices, a joystick to allow users to move the
+  // characters.
+  //
+  // The cockpit has three possible states:
+  //
+  // * Not displayed (show: false, closingAnimation: false)
+  // * Displayed (show: true)
+  // * Not displayed, but with a closing animation
+  //   (show: false, closingAnimation: true).
+  //
+  // The last state is necessary when a scene before has the
+  // cockpit and in the current scene it should close. This
+  // grants a transition with a closing effect.
+  cockpit: PropTypes.shape({
+    show: PropTypes.bool,
+    closingAnimation: PropTypes.bool,
+  }),
 };
 
 export default animationScenario;

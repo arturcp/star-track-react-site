@@ -28,29 +28,33 @@ const listenToTheDoctor = (props) => {
 
   return (
     <>
-      <AnimationScenario scenario="doctor-lab">
-        <Player
-          image={images[character.name.toLowerCase()]}
-          data={CONSTANTS.PC.PLAYER_DATA}
-          allowInteraction={false}
-          initialData={{
-            position: { x: 234, y: 160 },
-            direction: CONSTANTS.DIRECTIONS.RIGHT,
-            step: CONSTANTS.MOVEMENT.STOPPED,
-          }}
-        />
+      <AnimationScenario scenario="doctor-lab" cockpit={{ show: false, closingAnimation: true }}>
+        {isAnimating && (
+          <>
+            <Player
+              image={images[character.name.toLowerCase()]}
+              data={CONSTANTS.PC.PLAYER_DATA}
+              allowInteraction={false}
+              initialData={{
+                position: { x: 225, y: 160 },
+                direction: CONSTANTS.DIRECTIONS.RIGHT,
+                step: CONSTANTS.MOVEMENT.STOPPED,
+              }}
+            />
 
-        <Player
-          image={images.ken}
-          data={CONSTANTS.DRKEN.PLAYER_DATA}
-          animation={animation}
-          allowInteraction={false}
-          initialData={{
-            position: { x: 300, y: 180 },
-            direction: CONSTANTS.DIRECTIONS.UP,
-            step: CONSTANTS.MOVEMENT.STOPPED,
-          }}
-        />
+            <Player
+              image={images.ken}
+              data={CONSTANTS.DRKEN.PLAYER_DATA}
+              animation={animation}
+              allowInteraction={false}
+              initialData={{
+                position: { x: 280, y: 180 },
+                direction: CONSTANTS.DIRECTIONS.UP,
+                step: CONSTANTS.MOVEMENT.STOPPED,
+              }}
+            />
+          </>
+        )}
       </AnimationScenario>
 
       {!isAnimating && (
