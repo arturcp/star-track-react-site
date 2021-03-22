@@ -12,7 +12,7 @@ import CONSTANTS from '../../../domains/constants';
 const listenToTheDoctor = (props) => {
   const [isAnimating, setAnimationStatus] = useState(true);
 
-  const { character, stageFinished } = props;
+  const { character } = props; //stageFinished
   const images = spriteImages();
 
   const animation = {
