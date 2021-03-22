@@ -1,27 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-// import { CSSTransition } from 'react-transition-group';
-
-// import DialogBox from '../../components/DialogBox/DialogBox';
 import Player from '../../../components/Sprites/Player';
 import spriteImages from '../../../components/Sprites/Images';
-// import introductionAnimation from './introductionAnimation';
 
 import CONSTANTS from '../../../domains/constants';
 
 const meetTheDoctor = (props) => {
-  // const [isAnimating, setAnimationStatus] = useState(true);
-
   const { character } = props;
   const images = spriteImages();
-
-  // const animation = {
-  //   sequence: introductionAnimation(),
-  //   onSequenceEnded: () => setAnimationStatus(false),
-  //   waitBeforeStart: 1300,
-  //   waitBeforeEnd: 1000,
-  // };
 
   const { stageFinished } = props;
 
@@ -32,9 +19,7 @@ const meetTheDoctor = (props) => {
         <Player
           image={images[character.name.toLowerCase()]}
           data={{ width: 64, height: 96 }}
-          // animation={animation}
-          allowInteraction // isso vai mudar de acordo com o stage atual,
-          // quando Ken for falar, tem que ser false
+          allowInteraction
           initialData={{
             position: { x: 0, y: 160 },
           }}
@@ -60,20 +45,6 @@ const meetTheDoctor = (props) => {
           }}
         />
       </section>
-
-      {/* {!isAnimating && (
-        <CSSTransition in appear timeout={600} classNames="fade">
-          <>
-            <DialogBox
-              text={character.history}
-              speed={10}
-              eraseSpeed={0}
-              typingDelay={1300}
-              dialogFinished={stageFinished}
-            />
-          </>
-        </CSSTransition>
-      )} */}
     </>
   );
 };
