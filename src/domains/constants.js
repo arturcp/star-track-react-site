@@ -11,6 +11,14 @@ const Constants = {
     STOPPED: 1,
     LEFT_FOOT_AHEAD: 2,
   },
+
+  PC: {
+    PLAYER_DATA: { width: 64, height: 96 },
+  },
+
+  DRKEN: {
+    PLAYER_DATA: { width: 64, height: 64 },
+  },
 };
 
 export default Constants;

@@ -18,7 +18,7 @@ const meetTheDoctor = (props) => {
       <AnimationScenario scenario="doctor-lab">
         <Player
           image={images[character.name.toLowerCase()]}
-          data={{ width: 64, height: 96 }}
+          data={CONSTANTS.PC.PLAYER_DATA}
           allowInteraction
           initialData={{
             position: { x: 0, y: 160 },
@@ -36,7 +36,7 @@ const meetTheDoctor = (props) => {
 
         <Player
           image={images.ken}
-          data={{ width: 64, height: 64 }}
+          data={CONSTANTS.DRKEN.PLAYER_DATA}
           allowInteraction={false}
           initialData={{
             position: { x: 300, y: 180 },
