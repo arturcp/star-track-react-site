@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 // import DialogBox from '../../../components/DialogBox/DialogBox';
 import Dialogs from '../../../components/Dialogs/Dialogs';
 import Player from '../../../components/Sprites/Player';
+import AnimationScenario from '../../../containers/animationScenario';
 import spriteImages from '../../../components/Sprites/Images';
 import CONSTANTS from '../../../domains/constants';
 import { sleep } from '../../../libs/animationUtils';
@@ -45,8 +46,7 @@ const listenToTheDoctor = (props) => {
 
   return (
     <>
-      <br />
-      <section className="animation-container">
+      <AnimationScenario scenario="doctor-lab">
         <Player
           image={images[character.name.toLowerCase()]}
           data={{ width: 64, height: 96 }}
@@ -69,7 +69,7 @@ const listenToTheDoctor = (props) => {
             step: CONSTANTS.MOVEMENT.STOPPED,
           }}
         />
-      </section>
+      </AnimationScenario>
 
       {!isAnimating && (
         <CSSTransition in appear timeout={600} classNames="fade">

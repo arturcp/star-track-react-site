@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Player from '../../../components/Sprites/Player';
 import spriteImages from '../../../components/Sprites/Images';
+import AnimationScenario from '../../../containers/animationScenario';
 
 import CONSTANTS from '../../../domains/constants';
 
@@ -14,8 +15,7 @@ const meetTheDoctor = (props) => {
 
   return (
     <>
-      <br />
-      <section className="animation-container">
+      <AnimationScenario scenario="doctor-lab">
         <Player
           image={images[character.name.toLowerCase()]}
           data={{ width: 64, height: 96 }}
@@ -44,7 +44,7 @@ const meetTheDoctor = (props) => {
             step: CONSTANTS.MOVEMENT.STOPPED,
           }}
         />
-      </section>
+      </AnimationScenario>
     </>
   );
 };
