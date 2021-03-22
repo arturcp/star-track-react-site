@@ -4,25 +4,37 @@ import PropTypes from 'prop-types';
 import Actor from './Actor';
 import useKeyPress from '../../hooks/use-key-press/useKeyPress';
 import useWalk from '../../hooks/use-walk/useWalk';
-import { animate } from '../../animations/animationUtils';
+import { animate } from '../../libs/animationUtils';
 
 const Player = (props) => {
   const {
-    image, data, animation, allowInteraction,
+    image,
+    data,
+    animation,
+    allowInteraction,
+    initialData,
+    movementsRestrictions,
+    destination,
   } = props;
 
-  const { initialPosition } = props;
+  const maxSteps = 3;
 
   const {
     direction, step, walk, position,
-  } = useWalk(3, initialPosition);
+  } = useWalk(maxSteps, initialData, movementsRestrictions);
 
   const [isAnimating, setAnimationStatus] = useState(false);
 
   useKeyPress((e) => {
     if (allowInteraction) {
       const chosenDirection = e.key.replace('Arrow', '').toLowerCase();
-      walk(chosenDirection);
+      if (!movementsRestrictions || movementsRestrictions.directions.includes(chosenDirection)) {
+        walk(chosenDirection);
+
+        if (position.x === destination.x || position.y === destination.y) {
+          destination.arrived();
+        }
+      }
       e.preventDefault();
     }
   });
@@ -95,13 +107,34 @@ Player.propTypes = {
   // when all you need is to run an animation.
   allowInteraction: PropTypes.bool,
 
+  // When rendering a player, you can either rely on the default
+  // values for the initial position or you can set it yourself.
+  // To do that on your own, use the initialData property.
+  //
+  // This is a hash and accept the following attributes:
+  //
+  // # initialPosition
+  //
   // This property is a hash containing the position, on screen,
   // of the player. After step of the animation (or after each
   // user interaction) the position will change, moving the
   // object around.
   //
   // The valid keys for this hash are x and y.
-  initialPosition: PropTypes.object,
+  //
+  // # initialStep
+  //
+  // Step is the column of the sprite that will be displayed.
+  // To start the image in a given column, set the initialStep.
+  //
+  // # initialDirection
+  //
+  // Each row in the sprite represents a different direction.
+  // To start the image in a given direction (row), set the
+  // initialDirection.
+  // Check the list of directions and their numeric code at
+  // `src/hooks/use-walk/useWalk.js`.
+  initialData: PropTypes.object,
 };
 
 export default Player;

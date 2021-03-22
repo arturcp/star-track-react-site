@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import loadingImage from '../../images/loading.gif';
+import loadingImage from '../../../images/loading.gif';
 
 const Image = styled.img`
   position: absolute;

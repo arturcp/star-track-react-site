@@ -40,7 +40,7 @@ class CharactersCards extends Component {
             <Link
               key={character.name}
               to={{
-                pathname: '/tutorial',
+                pathname: '/historia',
                 state: {
                   character,
                 },

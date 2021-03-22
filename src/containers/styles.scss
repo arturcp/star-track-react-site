@@ -1,0 +1,19 @@
+.animation-scenario {
+  position: relative;
+  width: 500px;
+  height: 270px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  margin-top: 20px;
+
+  @media only screen and (max-width: 576px) {
+    width: 100%;
+    background-size: 100% 100%;
+  }
+
+  &.doctor-lab {
+    background-image: url(../images/scenarios/doctor-lab.jpeg);
+    background-size: 500px 270px;
+    background-repeat: no-repeat;
+  }
+}
