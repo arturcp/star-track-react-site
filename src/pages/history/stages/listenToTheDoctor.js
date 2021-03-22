@@ -6,39 +6,20 @@ import Dialogs from '../../../components/Dialogs/Dialogs';
 import Player from '../../../components/Sprites/Player';
 import AnimationScenario from '../../../containers/animationScenario';
 import spriteImages from '../../../components/Sprites/Images';
+import { moveCharacter } from '../../../libs/animationUtils';
 import CONSTANTS from '../../../domains/constants';
-import { sleep } from '../../../libs/animationUtils';
 
 const listenToTheDoctor = (props) => {
   const [isAnimating, setAnimationStatus] = useState(true);
 
-  const delay = 60;
-
   const { character, stageFinished } = props;
   const images = spriteImages();
 
-  const introductionAnimation = () => {
-    async function moveLeft(walk) {
-      const steps = 2;
-      for (let i = 0; i < steps; i += 1) {
-        walk('left');
-        await sleep(delay);
-      }
-    }
-
-    async function moveDown(walk) {
-      const steps = 2;
-      for (let i = 0; i < steps; i += 1) {
-        walk('down');
-        await sleep(delay);
-      }
-    }
-
-    return [moveDown, moveLeft];
-  };
-
   const animation = {
-    sequence: introductionAnimation(),
+    sequence: [
+      async(walk) => { await moveCharacter(2, 'down', walk); },
+      async(walk) => { await moveCharacter(2, 'left', walk); },
+    ],
     onSequenceEnded: () => setAnimationStatus(false),
     waitBeforeStart: 1300,
     waitBeforeEnd: 1000,
