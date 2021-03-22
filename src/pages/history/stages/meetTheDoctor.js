@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 // import { CSSTransition } from 'react-transition-group';
 
 // import DialogBox from '../../components/DialogBox/DialogBox';
-import Player from '../../components/Sprites/Player';
-import spriteImages from '../../components/Sprites/Images';
+import Player from '../../../components/Sprites/Player';
+import spriteImages from '../../../components/Sprites/Images';
 // import introductionAnimation from './introductionAnimation';
 
-import CONSTANTS from '../../domains/constants';
+import CONSTANTS from '../../../domains/constants';
 
-const Introduction = (props) => {
+const meetTheDoctor = (props) => {
   // const [isAnimating, setAnimationStatus] = useState(true);
 
   const { character } = props;
@@ -78,7 +78,7 @@ const Introduction = (props) => {
   );
 };
 
-Introduction.propTypes = {
+meetTheDoctor.propTypes = {
   // Character of the current user (Carmen, Sam or Diego)
   character: PropTypes.object,
 
@@ -88,4 +88,4 @@ Introduction.propTypes = {
   stageFinished: PropTypes.func,
 };
 
-export default Introduction;
+export default meetTheDoctor;

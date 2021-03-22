@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Quizz from '../Quizz/Quizz';
+// import Quizz from '../Quizz/Quizz';
 import Api from '../../services/api';
 import Dialog from './Dialog/Dialog';
 import withGame from '../../hoc/with-game';
-// import Loading from '../Loading/Loading';
+import Loading from '../UI/Loading/Loading';
 
 const Container = styled(TransitionGroup)`
   margin-top: 220px;
@@ -65,8 +65,8 @@ class Dialogs extends Component {
       );
     }
 
-    // return <Loading />;
-    return <Quizz />;
+    return <Loading />;
+    // return <Quizz />;
   }
 }
 

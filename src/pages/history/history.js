@@ -3,13 +3,16 @@
 
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
-import Introduction from './introduction';
 import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
 import Dialogs from '../../components/Dialogs/Dialogs';
 import InfoBar from '../../components/InfoBar/InfoBar';
 import withGame from '../../hoc/with-game';
 import Api from '../../services/api';
 import createStateMachine from '../../libs/StateMachine';
+
+// Stages
+import MeetTheDoctor from './stages/meetTheDoctor';
+import ListenToTheDoctor from './stages/listenToTheDoctor';
 
 import rocket from '../../images/rocket-launch.gif';
 import './styles.scss';
@@ -25,10 +28,11 @@ class History extends Component {
     this.character = character;
 
     const initialStage = createStateMachine(this, [
-      'introduction',
-      'confirmation',
-      'launching',
-      'dialogs',
+      'meetTheDoctor',
+      'listenToTheDoctor',
+      // 'confirmation',
+      // 'launching',
+      // 'dialogs',
     ]);
 
     this.state = {
@@ -48,9 +52,13 @@ class History extends Component {
     game.start(location.state.character, levels.data, npcs.data);
   };
 
-  onIntroduction = () => (
-    <Introduction character={this.character} stageFinished={this.nextStage} />
+  onMeetTheDoctor = () => (
+    <MeetTheDoctor character={this.character} stageFinished={this.nextStage} />
   );
+
+  onListenToTheDoctor = () => (
+    <ListenToTheDoctor character={this.character} stageFinished={this.nextStage} />
+  )
 
   onConfirmation = () => {
     const text = `You are about to start ${this.character.name}'s journey, are you ready?`;
