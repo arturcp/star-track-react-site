@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Player from '../../../components/Sprites/Player';
 import spriteImages from '../../../components/Sprites/Images';
-import AnimationScenario from '../../../containers/animationScenario';
+import AnimationScenario from '../../../containers/Scenario/animationScenario';
 
 import CONSTANTS from '../../../domains/constants';
 

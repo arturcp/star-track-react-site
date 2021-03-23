@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Joystick from '../../components/Joystick/Joystick';
 
 import './styles.scss';
 
@@ -9,12 +10,22 @@ const animationScenario = (props) => {
   const classes = `animation-scenario ${scenario}`;
   const animate = closingAnimation === true;
 
+  const managerListener = (manager) => {
+    manager.on('move', (e, stick) => {
+      console.log('I moved!', e, stick);
+    });
+
+    manager.on('end', () => {
+      console.log('I ended!');
+    });
+  };
+
   return (
     <section className={classes}>
       {props.children}
       {(show || animate) && (
         <div className={`cockpit ${animate ? 'scale-out-ver-top' : ''}`}>
-          teste
+          <Joystick managerListener={managerListener} />
         </div>
       )}
     </section>

@@ -1,2 +1,4 @@
 # Uncomment this line to run yarn start without eslint
 # **/*
+
+node_modules/

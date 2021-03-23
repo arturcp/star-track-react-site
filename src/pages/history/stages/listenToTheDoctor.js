@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 // import DialogBox from '../../../components/DialogBox/DialogBox';
 import Dialogs from '../../../components/Dialogs/Dialogs';
 import Player from '../../../components/Sprites/Player';
-import AnimationScenario from '../../../containers/animationScenario';
+import AnimationScenario from '../../../containers/Scenario/animationScenario';
 import spriteImages from '../../../components/Sprites/Images';
 import { moveCharacter } from '../../../libs/animationUtils';
 import CONSTANTS from '../../../domains/constants';
@@ -26,9 +26,21 @@ const listenToTheDoctor = (props) => {
     waitBeforeEnd: 1000,
   };
 
+  const moveHandler = (e, stick) => {
+    console.log(e, stick);
+  };
+
+  const moveEndHandler = () => {
+    console.log('end');
+  };
+
   return (
     <>
-      <AnimationScenario scenario="doctor-lab" cockpit={{ show: false, closingAnimation: true }}>
+      <AnimationScenario
+        scenario="doctor-lab"
+        cockpit={{ show: false, closingAnimation: true }}
+        joystickSettings={{ onMove: moveHandler, onMoveEnd: moveEndHandler }}
+      >
         {isAnimating && (
           <>
             <Player
