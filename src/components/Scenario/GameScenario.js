@@ -1,38 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Joystick from '../../components/Joystick/Joystick';
+import ScenarioWithCockpit from './ScenarioWithCockpit';
+import Joystick from '../Joystick/Joystick';
 
 import './styles.scss';
 
-const animationScenario = (props) => {
-  const { scenario } = props;
-  const { show, closingAnimation } = props.cockpit;
-  const classes = `animation-scenario ${scenario}`;
-  const animate = closingAnimation === true;
+const gameScenario = (props) => {
+  const { scenario, cockpit, joystickSettings } = props;
+  const { show: showCockpit, closingAnimation: closingCockpitAnimation } = cockpit;
 
   const managerListener = (manager) => {
     manager.on('move', (e, stick) => {
-      console.log('I moved!', e, stick);
+      joystickSettings.onMove(e, stick);
     });
 
     manager.on('end', () => {
-      console.log('I ended!');
+      joystickSettings.onMoveEnd();
     });
   };
 
+  const joystickControl = () => (
+    <Joystick {...joystickSettings} managerListener={managerListener} />
+  );
+
   return (
-    <section className={classes}>
+    <ScenarioWithCockpit
+      scenario={scenario}
+      cockpit={{
+        show: showCockpit,
+        closingAnimation: closingCockpitAnimation,
+        buildCockpitContent: joystickControl,
+      }}
+    >
       {props.children}
-      {(show || animate) && (
-        <div className={`cockpit ${animate ? 'scale-out-ver-top' : ''}`}>
-          <Joystick managerListener={managerListener} />
-        </div>
-      )}
-    </section>
+    </ScenarioWithCockpit>
   );
 };
 
-animationScenario.propTypes = {
+gameScenario.propTypes = {
   // Name of the scenario. This property is strongly linked
   // to the image that will be displayed.
   //
@@ -64,4 +69,4 @@ animationScenario.propTypes = {
   }),
 };
 
-export default animationScenario;
+export default gameScenario;
