@@ -1,6 +1,4 @@
-/* TODO: these variables are duplicated. See how to centralize them */
-$main-color: #fff;
-$secondary-color: #f8cd1b;
+@import '../../shared/vars.scss';
 
 .confirmation-box {
   width: 90%;
@@ -33,7 +31,7 @@ $secondary-color: #f8cd1b;
 
   .call-to-action {
     position: relative;
-    background-color: $secondary-color;
+    background-color: var(--secondary-color);
     border: none;
     padding: 15px;
     width: 150px;
@@ -57,7 +55,7 @@ $secondary-color: #f8cd1b;
 
   .call-to-action:after {
     content: '';
-    background: $secondary-color;
+    background: var(--secondary-color);
     display: block;
     position: absolute;
     padding-top: 300%;

@@ -1,9 +1,7 @@
-/* TODO: these variables are duplicated. See how to centralize them */
-$main-color: #fff;
-$secondary-color: #f8cd1b;
+@import '../../shared/vars.scss';
 
 #site-footer {
-  background-color: $main-color;
+  background-color: var(--main-color);
   width: 100%;
   box-shadow: #000 0 1px 3px 0px;
   padding: 25px;
