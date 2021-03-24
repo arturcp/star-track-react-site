@@ -7,9 +7,22 @@ import './styles.scss';
 
 const scenarioWithCockpit = (props) => {
   const { scenario } = props;
-  const { show, closingAnimation, buildCockpitContent } = props.cockpit;
+  const {
+    show,
+    closingAnimation,
+    buildCockpitContent,
+    message,
+  } = props.cockpit;
   const animate = closingAnimation === true;
   const cockpitClasses = animate ? 'scale-out-ver-top' : '';
+
+  const buildCockpitMessage = () => {
+    if (message !== '') {
+      return <div className="cockpit-message">{message}</div>;
+    }
+
+    return null;
+  };
 
   return (
     <div className={`scenario-with-cockpit ${scenario}`}>
@@ -19,6 +32,7 @@ const scenarioWithCockpit = (props) => {
 
       {(show || animate) && (
         <Cockpit classes={cockpitClasses}>
+          {buildCockpitMessage()}
           {buildCockpitContent()}
         </Cockpit>
       )}

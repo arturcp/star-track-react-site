@@ -7,7 +7,11 @@ import './styles.scss';
 
 const gameScenario = (props) => {
   const { scenario, cockpit, joystickSettings } = props;
-  const { show: showCockpit, closingAnimation: closingCockpitAnimation } = cockpit;
+  const {
+    show: showCockpit,
+    closingAnimation: closingCockpitAnimation,
+    message,
+  } = cockpit;
 
   const joystickControl = () => (
     <Joystick {...joystickSettings} />
@@ -20,6 +24,7 @@ const gameScenario = (props) => {
         show: showCockpit,
         closingAnimation: closingCockpitAnimation,
         buildCockpitContent: joystickControl,
+        message,
       }}
     >
       {props.children}

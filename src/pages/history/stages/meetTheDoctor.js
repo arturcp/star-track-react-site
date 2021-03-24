@@ -17,7 +17,7 @@ const meetTheDoctor = (props) => {
     <>
       <GameScenario
         scenario="doctor-lab"
-        cockpit={{ show: true }}
+        cockpit={{ show: true, message: '🗣 Talk to the doctor' }}
       >
         <Player
           image={images[character.name.toLowerCase()]}
