@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Player from '../../../components/Sprites/Player';
 import spriteImages from '../../../components/Sprites/Images';
-import AnimationScenario from '../../../containers/animationScenario';
+import GameScenario from '../../../components/Scenario/GameScenario';
 
 import CONSTANTS from '../../../domains/constants';
 
@@ -15,7 +15,10 @@ const meetTheDoctor = (props) => {
 
   return (
     <>
-      <AnimationScenario scenario="doctor-lab" cockpit={{ show: true }}>
+      <GameScenario
+        scenario="doctor-lab"
+        cockpit={{ show: true, message: '🗣 Talk to the doctor' }}
+      >
         <Player
           image={images[character.name.toLowerCase()]}
           data={CONSTANTS.PC.PLAYER_DATA}
@@ -44,7 +47,7 @@ const meetTheDoctor = (props) => {
             step: CONSTANTS.MOVEMENT.STOPPED,
           }}
         />
-      </AnimationScenario>
+      </GameScenario>
     </>
   );
 };

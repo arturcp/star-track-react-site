@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import PubSub from 'pubsub-js';
+import _ from 'lodash';
 
 import Actor from './Actor';
 import useKeyPress from '../../hooks/use-key-press/useKeyPress';
 import useWalk from '../../hooks/use-walk/useWalk';
 import { animate } from '../../libs/animationUtils';
+import { triggerKeydown } from '../../libs/keyboardUtils';
 
 const Player = (props) => {
   const {
@@ -23,23 +26,38 @@ const Player = (props) => {
     direction, step, walk, position,
   } = useWalk(maxSteps, initialData, movementsRestrictions);
 
+  const [subscriber, setsubscriber] = useState(null);
   const [isAnimating, setAnimationStatus] = useState(false);
 
-  useKeyPress((e) => {
-    if (allowInteraction) {
-      const chosenDirection = e.key.replace('Arrow', '').toLowerCase();
-      if (!movementsRestrictions || movementsRestrictions.directions.includes(chosenDirection)) {
-        walk(chosenDirection);
+  const move = (movementDirection) => {
+    if (!movementsRestrictions || movementsRestrictions.directions.includes(movementDirection)) {
+      walk(movementDirection);
 
-        if (position.x === destination.x || position.y === destination.y) {
-          destination.arrived();
-        }
+      if (position.x === destination.x || position.y === destination.y) {
+        destination.arrived();
       }
-      e.preventDefault();
     }
-  });
+  };
 
-  if (!isAnimating) {
+  if (allowInteraction) {
+    useKeyPress((e) => {
+      const movementDirection = e.key.replace('Arrow', '').toLowerCase();
+      move(movementDirection);
+      e.preventDefault();
+    });
+
+    const joystickHandler = (topic, payload) => {
+      if (payload.stick.direction) {
+        triggerKeydown({ key: `${payload.stick.direction.angle}Arrow` });
+      }
+    };
+
+    const joystickHandlerWithThrottle = _.throttle(joystickHandler, 30);
+    if (!subscriber) {
+      PubSub.unsubscribe(joystickHandlerWithThrottle);
+      setsubscriber(PubSub.subscribe('Joystick::Moved', joystickHandlerWithThrottle));
+    }
+  } else if (!isAnimating) {
     setAnimationStatus(true);
     animate(animation, walk);
   }

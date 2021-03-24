@@ -1,4 +1,4 @@
-.animation-scenario {
+.scenario-with-cockpit {
   position: relative;
   width: 500px;
   height: 270px;
@@ -13,18 +13,31 @@
 
   .cockpit {
     position: absolute;
-    bottom: -103px;
+    bottom: -123px;
     padding: 10px;
     width: 100%;
-    height: 100px;
+    height: 120px;
     background-color: #fff;
     color: #000;
     box-shadow: 2px 2px 4px #000;
   }
 
   &.doctor-lab {
-    background-image: url(../images/scenarios/doctor-lab.jpeg);
+    background-image: url(../../images/scenarios/doctor-lab.jpeg);
     background-size: 500px 270px;
     background-repeat: no-repeat;
+  }
+
+  .cockpit-message {
+    border: 1px solid #ccc;
+    border-left: 3px solid #606bb9;
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+    width: 320px;
+
+    position: absolute;
+    left: 10px;
+    top: 37px;
   }
 }

@@ -1,27 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ScenarioWithCockpit from './ScenarioWithCockpit';
+import Joystick from '../Joystick/Joystick';
 
 import './styles.scss';
 
-const animationScenario = (props) => {
-  const { scenario } = props;
-  const { show, closingAnimation } = props.cockpit;
-  const classes = `animation-scenario ${scenario}`;
-  const animate = closingAnimation === true;
+const gameScenario = (props) => {
+  const { scenario, cockpit, joystickSettings } = props;
+  const {
+    show: showCockpit,
+    closingAnimation: closingCockpitAnimation,
+    message,
+  } = cockpit;
+
+  const joystickControl = () => (
+    <Joystick {...joystickSettings} />
+  );
 
   return (
-    <section className={classes}>
+    <ScenarioWithCockpit
+      scenario={scenario}
+      cockpit={{
+        show: showCockpit,
+        closingAnimation: closingCockpitAnimation,
+        buildCockpitContent: joystickControl,
+        message,
+      }}
+    >
       {props.children}
-      {(show || animate) && (
-        <div className={`cockpit ${animate ? 'scale-out-ver-top' : ''}`}>
-          teste
-        </div>
-      )}
-    </section>
+    </ScenarioWithCockpit>
   );
 };
 
-animationScenario.propTypes = {
+gameScenario.propTypes = {
   // Name of the scenario. This property is strongly linked
   // to the image that will be displayed.
   //
@@ -53,4 +64,4 @@ animationScenario.propTypes = {
   }),
 };
 
-export default animationScenario;
+export default gameScenario;
