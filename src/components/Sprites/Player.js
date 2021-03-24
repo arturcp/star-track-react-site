@@ -7,6 +7,7 @@ import Actor from './Actor';
 import useKeyPress from '../../hooks/use-key-press/useKeyPress';
 import useWalk from '../../hooks/use-walk/useWalk';
 import { animate } from '../../libs/animationUtils';
+import { triggerKeydown } from '../../libs/keyboardUtils';
 
 const Player = (props) => {
   const {
@@ -40,16 +41,14 @@ const Player = (props) => {
 
   if (allowInteraction) {
     useKeyPress((e) => {
-      console.log(position);
       const movementDirection = e.key.replace('Arrow', '').toLowerCase();
       move(movementDirection);
       e.preventDefault();
     });
 
     const joystickHandler = (topic, payload) => {
-      console.log(position);
       if (payload.stick.direction) {
-        move(payload.stick.direction.angle);
+        triggerKeydown({ key: `${payload.stick.direction.angle}Arrow` });
       }
     };
 
@@ -63,7 +62,6 @@ const Player = (props) => {
     animate(animation, walk);
   }
 
-  console.log('render');
   return (
     <Actor
       image={image}
