@@ -13,23 +13,11 @@ const meetTheDoctor = (props) => {
 
   const { stageFinished } = props;
 
-  const moveHandler = (e, stick) => {
-    console.log(e, stick);
-  };
-
-  const moveEndHandler = () => {
-    console.log('end');
-  };
-
   return (
     <>
       <GameScenario
         scenario="doctor-lab"
         cockpit={{ show: true }}
-        joystickSettings={{
-          onMove: moveHandler,
-          onMoveEnd: moveEndHandler,
-        }}
       >
         <Player
           image={images[character.name.toLowerCase()]}

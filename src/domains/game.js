@@ -44,7 +44,7 @@ export default class Game {
     this.levels = levels;
     this.npcs = npcs;
     this.status = this.STATUS.history;
-    this.save();
+    // this.save();
   };
 
   changeStatus = (newStatus) => {

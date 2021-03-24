@@ -86,6 +86,8 @@ const useWalk = (maxSteps, initialData, movementsRestrictions) => {
         setStep(CONSTANTS.MOVEMENT.STOPPED);
       }
     }
+
+    return position;
   };
 
   return {

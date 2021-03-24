@@ -93,6 +93,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   - [https://dev.to/maiertech/husky-v5-pitfalls-2pf6](https://dev.to/maiertech/husky-v5-pitfalls-2pf6)
   - https://github.com/arturcp/star-track-react-site/pull/24
 - [Pixel art scaler](https://lospec.com/pixel-art-scaler/)
+- Pubsub: https://github.com/mroderick/PubSubJS
 
 There was an error when using sass:
 

@@ -9,18 +9,8 @@ const gameScenario = (props) => {
   const { scenario, cockpit, joystickSettings } = props;
   const { show: showCockpit, closingAnimation: closingCockpitAnimation } = cockpit;
 
-  const managerListener = (manager) => {
-    manager.on('move', (e, stick) => {
-      joystickSettings.onMove(e, stick);
-    });
-
-    manager.on('end', () => {
-      joystickSettings.onMoveEnd();
-    });
-  };
-
   const joystickControl = () => (
-    <Joystick {...joystickSettings} managerListener={managerListener} />
+    <Joystick {...joystickSettings} />
   );
 
   return (
