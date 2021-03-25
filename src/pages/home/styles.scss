@@ -1,6 +1,4 @@
-/* TODO: these variables are duplicated. See how to centralize them */
-$main-color: #fff;
-$secondary-color: #f8cd1b;
+@import '../../shared/vars.scss';
 
 .avatar {
   width: 100px;
@@ -20,7 +18,7 @@ $secondary-color: #f8cd1b;
   text-align: center;
 
   font-size: 40px;
-  color: $main-color;
+  color: var(--main-color);
 
   @media only screen and (min-width: 768px) {
     line-height: 1.2;

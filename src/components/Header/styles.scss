@@ -1,13 +1,11 @@
-/* TODO: these variables are duplicated. See how to centralize them */
-$main-color: #fff;
-$secondary-color: #f8cd1b;
+@import '../../shared/vars.scss';
 
 #top-header {
   position: fixed;
   display: inline-flex;
   top: 0;
   padding: 25px;
-  background-color: $main-color;
+  background-color: var(--main-color);
   width: 100%;
   margin-bottom: 2px;
   box-shadow: #000 0 1px 3px 0px;
@@ -29,7 +27,7 @@ $secondary-color: #f8cd1b;
     margin-bottom: 0;
     font-weight: bold;
     font-size: 34px;
-    color: $secondary-color;
+    color: var(--secondary-color);
     text-shadow: 0 0 #000;
   }
 

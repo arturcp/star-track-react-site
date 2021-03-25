@@ -1,6 +1,4 @@
-/* TODO: these variables are duplicated. See how to centralize them */
-$main-color: #fff;
-$secondary-color: #f8cd1b;
+@import '../../shared/vars.scss';
 
 #ranking-table {
   margin: 0 auto;
@@ -26,7 +24,7 @@ $secondary-color: #f8cd1b;
   }
 
   a {
-    color: $main-color;
+    color: var(--main-color);
   }
 
   a:link {
