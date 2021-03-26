@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Player from '../../../components/Sprites/Player';
 import spriteImages from '../../../components/Sprites/Images';
 import GameScenario from '../../../components/Scenario/GameScenario';
-
+import Modal from '../../../components/UI/Modal/Modal';
 import CONSTANTS from '../../../domains/constants';
 
 const meetTheDoctor = (props) => {
@@ -15,6 +15,13 @@ const meetTheDoctor = (props) => {
 
   return (
     <>
+      <Modal
+        buttonText="Close"
+        title="My first modal"
+        buttonClicked={() => { console.log('clicked'); }}
+      >
+        Aqui vai um texto legal
+      </Modal>
       <GameScenario
         scenario="doctor-lab"
         cockpit={{ show: true, message: '🗣 Talk to the doctor' }}
