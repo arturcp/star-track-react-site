@@ -3,6 +3,15 @@ import Backdrop from '../Backdrop/Backdrop';
 import Button from '../Button/Button';
 import './styles.scss';
 
+// Usage example:
+//
+// <Modal
+//   buttonText="Close"
+//   title="My first modal"
+//   buttonClicked={() => { console.log('clicked'); }}
+//   >
+//   Aqui vai um texto legal
+// </Modal>
 const modal = (props) => {
   const { onButtonClick, title, buttonText } = props;
 
