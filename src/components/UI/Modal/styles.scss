@@ -8,6 +8,7 @@
   background-color: #fefefe;
   padding: 25px;
   color: #000;
+  border-radius: 5px;
 
   @media only screen and (max-width: 768px) {
     width: calc(90vw);
@@ -22,6 +23,6 @@
   }
 
   .modal-actions {
-
+    text-align: right;
   }
 }
