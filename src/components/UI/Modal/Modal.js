@@ -8,7 +8,7 @@ import './styles.scss';
 // <Modal
 //   buttonText="Close"
 //   title="My first modal"
-//   buttonClicked={() => { console.log('clicked'); }}
+//   onButtonClick={() => { console.log('clicked'); }}
 //   >
 //   Aqui vai um texto legal
 // </Modal>

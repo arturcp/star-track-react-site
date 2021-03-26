@@ -1,0 +1,9 @@
+.scene-object {
+  position: absolute;
+  z-index: 2;
+  cursor: pointer;
+
+  &:hover {
+    filter: hue-rotate(90deg);
+  }
+}
