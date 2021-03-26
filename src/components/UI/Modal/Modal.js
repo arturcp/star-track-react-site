@@ -1,5 +1,6 @@
 import React from 'react';
 import Backdrop from '../Backdrop/Backdrop';
+import Button from '../Button/Button';
 import './styles.scss';
 
 const modal = (props) => {
@@ -16,9 +17,9 @@ const modal = (props) => {
           {props.children}
         </div>
         <div className="modal-actions">
-          <button type="button" onClick={onButtonClick}>
+          <Button onClick={onButtonClick}>
             {buttonText}
-          </button>
+          </Button>
         </div>
       </div>
     </>
