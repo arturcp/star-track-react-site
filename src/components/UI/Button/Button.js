@@ -1,6 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const StyledButton = styled.button`
+  background-color: ${(props) => props.colorScheme.backgroundColor};
+  color: ${(props) => props.colorScheme.color};
+  border: 1px solid #eee;
+  padding: 15px;
+  min-width: 100px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${(props) => props.colorScheme.hoverBackgroundColor};
+    box-shadow: 0px 2px 10px 5px #97b1bf;
+    color: ${(props) => props.colorScheme.hoverColor};
+  }
+`;
+
 const button = (props) => {
   const white = '#fff';
   const black = '#000';
@@ -35,30 +56,9 @@ const button = (props) => {
 
   const { type: buttonType, ...attributes } = props;
   const colorScheme = buttonScheme(buttonType);
-  const StyledButton = styled.button`
-    background-color: ${colorScheme.backgroundColor};
-    color: ${colorScheme.color};
-    // border: none;
-    border: 1px solid #eee;
-    padding: 15px;
-    min-width: 100px;
-    text-align: center;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-      background: ${colorScheme.hoverBackgroundColor};
-      box-shadow: 0px 2px 10px 5px #97b1bf;
-      color: ${colorScheme.hoverColor};
-    }
-  `;
 
   return (
-    <StyledButton {...attributes}>
+    <StyledButton {...attributes} colorScheme={colorScheme}>
       {props.children}
     </StyledButton>
   );
