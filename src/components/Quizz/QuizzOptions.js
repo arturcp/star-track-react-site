@@ -41,7 +41,6 @@ class QuizzOptions extends Component {
     const max = parseInt(this.getNumbers(lastItem.value), 10);
 
     const { value } = this.state;
-    const { baseLetter } = this.props;
 
     return (
       <div className="slider">
