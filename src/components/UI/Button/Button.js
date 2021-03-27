@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const StyledButton = styled.button`
   background-color: ${(props) => props.colorScheme.backgroundColor};
@@ -62,6 +63,17 @@ const button = (props) => {
       {props.children}
     </StyledButton>
   );
+};
+
+button.propTypes = {
+  // The types dictates the appearance of the button,
+  // it works like a theme. There are these available
+  // types:
+  //
+  // * default: yellow button with black text
+  // * negative: white button with black text
+  // * danger: red button with white text
+  type: PropTypes.string,
 };
 
 export default button;
