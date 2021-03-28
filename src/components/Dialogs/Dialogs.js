@@ -28,6 +28,7 @@ class Dialogs extends Component {
     const { currentLevelId, currentStageId } = game;
     const params = `${currentLevelId}/${currentStageId}/${dialogId}`;
     const response = await Api.get(`/api/dialogs/${params}`);
+    response.data[0].paragraphs[0] = 'Meu amigo! <pause for=2000> O que traz você aqui?';
     this.setState({ dialogs: response.data });
   };
 
