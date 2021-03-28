@@ -7,6 +7,7 @@ import Api from '../../services/api';
 import Dialog from './Dialog/Dialog';
 import withGame from '../../hoc/with-game';
 import Loading from '../UI/Loading/Loading';
+import './styles.scss';
 
 const Container = styled(TransitionGroup)`
   margin-top: 220px;
@@ -42,14 +43,22 @@ class Dialogs extends Component {
     && currentDialogIndex < dialogs.length;
 
   render() {
-    const { game } = this.props;
+    const { game, background } = this.props;
     const { npcs, character } = game;
     const { dialogs } = this.state;
     const { currentDialogIndex } = this.state;
+    const { backgroundImage, backgroundColor } = background || {};
 
     if (this.readyToShow(npcs, dialogs, currentDialogIndex)) {
       return (
         <Container>
+          {background && (
+            <div
+              className="dialogs-background"
+              style={{ backgroundImage: `url(${backgroundImage})`, backgroundColor }}
+            />
+          )}
+
           <CSSTransition
             key={currentDialogIndex}
             timeout={300}

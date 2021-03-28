@@ -1,7 +1,5 @@
-/* eslint-disable no-await-in-loop */
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-// import DialogBox from '../../../components/DialogBox/DialogBox';
 import Dialogs from '../../../components/Dialogs/Dialogs';
 import Player from '../../../components/Sprites/Player';
 import GameScenario from '../../../components/Scenario/GameScenario';
@@ -63,15 +61,6 @@ const listenToTheDoctor = (props) => {
       {!isAnimating && (
         <CSSTransition in appear timeout={600} classNames="fade">
           <Dialogs />
-          {/* <>
-            <DialogBox
-              text={character.history}
-              speed={10}
-              eraseSpeed={0}
-              typingDelay={1300}
-              dialogFinished={stageFinished}
-            />
-          </> */}
         </CSSTransition>
       )}
     </>
