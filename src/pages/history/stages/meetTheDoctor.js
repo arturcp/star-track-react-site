@@ -27,7 +27,7 @@ const meetTheDoctor = (props) => {
       >
         <SceneProp
           name="Objeto"
-          imageStyles={{ top: '145px', left: '440px', width: '40px' }}
+          imageStyles={{ top: '133px', left: '440px', width: '40px' }}
           image={fishBowl}
           onClick={openModal}
         >
