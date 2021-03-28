@@ -31,6 +31,10 @@ const typewriter = (dialogBox, text, onSpeechEnd) => {
   };
 
   const write = (container) => {
+    if (container.getAttribute('mode') === 'flat') {
+      return;
+    }
+
     sContents = ' ';
 
     sContents = `${lastSentence}${sContents}${sentences[currentSentenceIndex].substring(0, characterPosition)}`;

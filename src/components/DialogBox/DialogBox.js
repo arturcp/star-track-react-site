@@ -1,17 +1,11 @@
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import typewriter from './typewriter';
 
 import './styles.scss';
 
 class DialogBox extends Component {
-  state = {
-    mode: 'typing',
-    currentIndex: 0,
-  };
-
   constructor(props) {
     super(props);
     const { text } = this.props;
@@ -45,7 +39,6 @@ class DialogBox extends Component {
 
     if (mode === 'typing') {
       this.setState({ mode: 'flat' });
-      console.log('terminou');
     }
   };
 
@@ -71,6 +64,9 @@ class DialogBox extends Component {
           currentIndex,
           currentText: text[currentIndex],
         });
+
+        typewriter(this.dialogBoxRef.current, text[currentIndex],
+          this.onSpeechEndHandler);
       }
     }
   };
@@ -121,11 +117,9 @@ class DialogBox extends Component {
           {mode === 'typing' ? (
             <div ref={this.dialogBoxRef} />
           ) : (
-            <CSSTransition in appear timeout={1600} classNames="fade">
-              <div>
-                {parsedText}
-              </div>
-            </CSSTransition>
+            <div ref={this.dialogBoxRef} mode="flat">
+              {parsedText}
+            </div>
           )}
           <span className="key-hint">{hintText}</span>
         </div>
@@ -171,19 +165,6 @@ DialogBox.propTypes = {
   // regarding colors, like strings (`red`, `blue`, etc),
   // HEX (#f4dd1d, for example), RGB and so on.
   labelColor: PropTypes.string,
-
-  // Speed is typing speed in milliseconds. The default value
-  // is 500 ms.
-  speed: PropTypes.number,
-
-  // Erase speed is the speed with which the text is
-  // erased. It is measure in milliseconds and the default value
-  // is 500 ms.
-  eraseSpeed: PropTypes.number,
-
-  // Time, in milliseconds, to wait before starting to type.
-  // The default value is 2500 ms.
-  typingDelay: PropTypes.number,
 
   // Function that will be executed when the entire dialog
   // finishes. It means that all the paragraphs of the text
