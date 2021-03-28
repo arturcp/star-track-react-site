@@ -31,7 +31,7 @@ sceneProp.propTypes = {
   //
   // Make sure you pass an image already imported:
   // `import image from '<path-to-the-image>';`
-  image: PropTypes.element,
+  image: PropTypes.string,
 
   // Name of the scene prop. It will be used
   // in the `alt` attribute.

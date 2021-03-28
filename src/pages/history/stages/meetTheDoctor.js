@@ -23,7 +23,7 @@ const meetTheDoctor = (props) => {
     <>
       <GameScenario
         scenario="doctor-lab"
-        cockpit={{ show: true, message: '🗣 Go to the doctor and talk to him' }}
+        cockpit={{ show: true, message: '🗣 Go and talk to the doctor' }}
       >
         <SceneProp
           name="Objeto"

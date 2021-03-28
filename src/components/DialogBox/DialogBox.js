@@ -1,8 +1,8 @@
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
-import ReactTypingEffect from 'react-typing-effect';
 import { CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
+import typewriter from './typewriter';
 
 import './styles.scss';
 
@@ -16,6 +16,8 @@ class DialogBox extends Component {
     super(props);
     const { text } = this.props;
 
+    this.dialogBoxRef = React.createRef();
+
     this.state = {
       mode: 'typing',
       currentIndex: 0,
@@ -26,11 +28,26 @@ class DialogBox extends Component {
   componentDidMount() {
     document.removeEventListener('keydown', this.onKeyPress);
     document.addEventListener('keydown', this.onKeyPress);
+
+    const { mode, currentText } = this.state;
+    if (mode === 'typing' && this.dialogBoxRef.current) {
+      typewriter(this.dialogBoxRef.current, currentText,
+        this.onSpeechEndHandler);
+    }
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onKeyPress);
   }
+
+  onSpeechEndHandler = () => {
+    const { mode } = this.state;
+
+    if (mode === 'typing') {
+      this.setState({ mode: 'flat' });
+      console.log('terminou');
+    }
+  };
 
   changeBoxState = () => {
     const { mode } = this.state;
@@ -83,16 +100,15 @@ class DialogBox extends Component {
 
   render() {
     const {
-      dialogFinished,
-      text,
       avatarDirection,
-      labelColor,
-      ...attributes
     } = this.props;
     const { mode, currentText } = this.state;
 
     const hintText = window.outerWidth < 576
       ? 'Tap to continue' : 'Press enter to continue';
+
+    const regex = new RegExp(/<pause for=\d+>/g);
+    const parsedText = currentText.split(regex).join(' ');
 
     return (
       <section
@@ -103,16 +119,11 @@ class DialogBox extends Component {
 
         <div className="dialog-box">
           {mode === 'typing' ? (
-            <ReactTypingEffect
-              key={currentText.replace(' ', '-')}
-              text={currentText}
-              {...attributes}
-              eraseDelay={1000000}
-            />
+            <div ref={this.dialogBoxRef} />
           ) : (
             <CSSTransition in appear timeout={1600} classNames="fade">
               <div>
-                {currentText}
+                {parsedText}
               </div>
             </CSSTransition>
           )}
