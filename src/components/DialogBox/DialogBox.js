@@ -45,7 +45,7 @@ class DialogBox extends Component {
   changeBoxState = () => {
     const { mode } = this.state;
     let { currentIndex } = this.state;
-    const { text, dialogFinished } = this.props;
+    const { text, speechFinished } = this.props;
 
     const typingCompleted = document.querySelector('.dialog-box div').textContent === text[currentIndex];
     const userInterrupedTyping = mode === 'typing' && !typingCompleted;
@@ -57,7 +57,7 @@ class DialogBox extends Component {
       const endOfDialog = currentIndex > text.length - 1;
 
       if (endOfDialog) {
-        dialogFinished();
+        speechFinished();
       } else {
         this.setState({
           mode: 'typing',
@@ -169,7 +169,7 @@ DialogBox.propTypes = {
   // Function that will be executed when the entire dialog
   // finishes. It means that all the paragraphs of the text
   // were displayed.
-  dialogFinished: PropTypes.func,
+  speechFinished: PropTypes.func,
 
   // During a dialog, the avatar may be shown in the left
   // of in the right of the screen (in mobile devices they

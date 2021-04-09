@@ -11,13 +11,12 @@ import Modal from '../../../components/UI/Modal/Modal';
 
 const meetTheDoctor = (props) => {
   const [modalState, setModalState] = useState('closed');
-  const { character } = props;
-  const images = spriteImages();
-
-  const { stageFinished } = props;
-
   const openModal = () => { setModalState('opened'); };
   const closeModal = () => { setModalState('closed'); };
+
+  const { character } = props;
+  const images = spriteImages();
+  const { stageFinished } = props;
 
   return (
     <>
@@ -30,9 +29,7 @@ const meetTheDoctor = (props) => {
           imageStyles={{ top: '133px', left: '440px', width: '40px' }}
           image={fishBowl}
           onClick={openModal}
-        >
-          teste
-        </SceneProp>
+        />
 
         <Player
           image={images[character.name.toLowerCase()]}

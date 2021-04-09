@@ -1,9 +1,9 @@
 import React from 'react';
-import DialogBox from '../../DialogBox/DialogBox';
+import DialogBox from '../DialogBox/DialogBox';
 
 const dialog = (props) => {
   const {
-    character, npcs, dialog: currentDialog, dialogFinished,
+    character, npcs, dialog: currentDialog, speechFinished,
   } = props;
 
   const getSpeaker = (npcId) => {
@@ -26,7 +26,7 @@ const dialog = (props) => {
       speed={40}
       eraseSpeed={0}
       typingDelay={1300}
-      dialogFinished={dialogFinished}
+      speechFinished={speechFinished}
       avatarDirection={avatarDirection}
     />
   );

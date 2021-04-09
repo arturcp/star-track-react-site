@@ -3,18 +3,20 @@
 
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
-import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
-import Dialogs from '../../components/Dialogs/Dialogs';
+// import ConfirmationBox from '../../components/ConfirmationBox/ConfirmationBox';
+// import Dialogs from '../../components/Dialogs/Dialogs';
 import InfoBar from '../../components/InfoBar/InfoBar';
 import withGame from '../../hoc/with-game';
 import Api from '../../services/api';
 import createStateMachine from '../../libs/StateMachine';
+import Loading from '../../components/UI/Loading/Loading';
 
 // Stages
 import MeetTheDoctor from './stages/meetTheDoctor';
 import ListenToTheDoctor from './stages/listenToTheDoctor';
+import LeaveTheLab from './stages/leaveTheLab';
 
-import rocket from '../../images/rocket-launch.gif';
+// import rocket from '../../images/rocket-launch.gif';
 import './styles.scss';
 
 // This page receives the current character in the `location`
@@ -30,6 +32,8 @@ class History extends Component {
     const initialStage = createStateMachine(this, [
       'meetTheDoctor',
       'listenToTheDoctor',
+      'leaveTheLab',
+      'showLoading',
       // 'confirmation',
       // 'launching',
       // 'dialogs',
@@ -60,36 +64,45 @@ class History extends Component {
     <ListenToTheDoctor character={this.character} stageFinished={this.nextStage} />
   )
 
-  onConfirmation = () => {
-    const text = `You are about to start ${this.character.name}'s journey, are you ready?`;
+  onLeaveTheLab = () => (
+    <LeaveTheLab character={this.character} stageFinished={this.nextStage} />
+  );
 
-    return (
-      <ConfirmationBox
-        title="It starts"
-        text={text}
-        buttonText="Start"
-        onClickHandler={this.nextStage}
-      />
-    );
-  };
+  onShowLoading = () => (
+    // <Loading />
+    <h1>TESTE</h1>
+  );
 
-  onLaunching = () => {
-    const { game } = this.props;
-    game.changeStatus(game.STATUS.loading);
+  // onConfirmation = () => {
+  //   const text = `You are about to start ${this.character.name}'s journey, are you ready?`;
 
-    this.nextStageAfterPause(5000);
+  //   return (
+  //     <ConfirmationBox
+  //       title="It starts"
+  //       text={text}
+  //       buttonText="Start"
+  //       onClickHandler={this.nextStage}
+  //     />
+  //   );
+  // };
 
-    return <img className="rocket-launch" src={rocket} alt="Rocket launch" />;
-  };
+  // onLaunching = () => {
+  //   const { game } = this.props;
+  //   game.changeStatus(game.STATUS.loading);
 
-  onDialogs = () => {
-    const { game } = this.props;
-    game.changeStatus(game.STATUS.tutorial);
+  //   this.nextStageAfterPause(5000);
 
-    return (
-      <Dialogs />
-    );
-  }
+  //   return <img className="rocket-launch" src={rocket} alt="Rocket launch" />;
+  // };
+
+  // onDialogs = () => {
+  //   const { game } = this.props;
+  //   game.changeStatus(game.STATUS.tutorial);
+
+  //   return (
+  //     <Dialogs />
+  //   );
+  // }
 
   render() {
     return (
