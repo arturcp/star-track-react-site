@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-// import Quizz from '../Quizz/Quizz';
 import Api from '../../services/api';
-import Dialog from './Dialog/Dialog';
+import Dialog from '../../components/Dialog/Dialog';
 import withGame from '../../hoc/with-game';
-import Loading from '../UI/Loading/Loading';
 import './styles.scss';
 
 const Container = styled(TransitionGroup)`
@@ -29,13 +27,18 @@ class Dialogs extends Component {
     const { currentLevelId, currentStageId } = game;
     const params = `${currentLevelId}/${currentStageId}/${dialogId}`;
     const response = await Api.get(`/api/dialogs/${params}`);
-    response.data[0].paragraphs[0] = 'Meu amigo! <pause for=2000> O que traz você aqui?';
     this.setState({ dialogs: response.data });
   };
 
-  onDialogFinished = () => {
-    const { currentDialogIndex } = this.state;
-    this.setState({ currentDialogIndex: currentDialogIndex + 1 });
+  onSpeechFinished = () => {
+    const { dialogs, currentDialogIndex } = this.state;
+    const { dialogsFinished } = this.props;
+
+    if (currentDialogIndex + 1 >= dialogs.length) {
+      dialogsFinished();
+    } else {
+      this.setState({ currentDialogIndex: currentDialogIndex + 1 });
+    }
   };
 
   readyToShow = (npcs, dialogs, currentDialogIndex) => dialogs.length > 0
@@ -68,15 +71,14 @@ class Dialogs extends Component {
               character={character}
               npcs={npcs}
               dialog={dialogs[currentDialogIndex]}
-              dialogFinished={this.onDialogFinished}
+              speechFinished={this.onSpeechFinished}
             />
           </CSSTransition>
         </Container>
       );
     }
 
-    return <Loading />;
-    // return <Quizz />;
+    return null;
   }
 }
 
@@ -85,6 +87,10 @@ Dialog.propTypes = {
   // the current game. To know more about this object,
   // check `src/domains/game.js`
   game: PropTypes.object,
+
+  // Function that will be executed when the entire
+  // dialog ends.
+  dialogsFinished: PropTypes.fn,
 };
 
 export default withGame(Dialogs);
