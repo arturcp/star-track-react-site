@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'plugin:cypress/recommended'],
+  extends: ['airbnb', 'plugin:cypress/recommended', 'plugin:testing-library/react'],
   parser: 'babel-eslint',
   env: {
     browser: true,
