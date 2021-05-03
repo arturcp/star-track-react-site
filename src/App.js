@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
+import { createStore } from 'redux';
 import Routes from './routes';
-import GameContext from './context/game-context';
-import Game from './domains/game';
+import { Provider } from 'react-redux';
+import reducer from './store/reducer';
+// import GameContext from './context/game-context';
+// import Game from './domains/game';
 
 import './App.scss';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    // eslint-disable-next-line react/state-in-constructor
-    this.state = { game: new Game({}, this.updateGame) };
-  }
+const store = createStore(reducer);
 
-  updateGame = (game) => {
-    this.setState({ game });
-  };
+// eslint-disable-next-line react/prefer-stateless-function
+class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   // eslint-disable-next-line react/state-in-constructor
+  //   // this.state = { game: new Game({}, this.updateGame) };
+  // }
+
+  // updateGame = (game) => {
+  //   this.setState({ game });
+  // };
 
   render() {
-    const { game } = this.state;
+    // const { game } = this.state;
     return (
-      <GameContext.Provider value={game}>
+      <Provider store={store}>
         <div className="App">
           <Routes />
         </div>
-      </GameContext.Provider>
+      </Provider>
     );
   }
 }

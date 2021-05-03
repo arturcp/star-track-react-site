@@ -22,3 +22,12 @@ const Constants = {
 };
 
 export default Constants;
+
+export const GAME_STATUS = {
+  INITIAL: 'initial',
+  HISTORY: 'on history',
+  LOADING: 'loading',
+  TUTORIAL: 'on tutorial',
+  STARTED: 'started',
+  FINISHED: 'finished',
+};

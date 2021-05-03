@@ -37,5 +37,6 @@ module.exports = {
     'no-unused-vars': ['warn'],
     'react/no-unused-prop-types': ['warn'],
     'no-debugger': ['warn'],
+    'import/prefer-default-export': ['warn'],
   },
 };
